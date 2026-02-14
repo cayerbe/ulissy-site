@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ULissy — The Identity Layer the Internet Never Had</title>
+<meta name="description" content="ULissy: A programming language for moving machines. GNS Protocol proves humanity through Proof-of-Trajectory, not biometrics.">
+<meta property="og:title" content="ULissy — Identity Through Movement">
+<meta property="og:description" content="A programming language for moving machines. Proof-of-Trajectory identity protocol.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ulissy.app">
+<link rel="canonical" href="https://ulissy.app">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════════════════
+   THEME SYSTEM
+   ═══════════════════════════════════════════════════════════ */
+:root {
+  --font-display: 'Fraunces', serif;
+  --font-body: 'Outfit', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --max-w: 1140px;
+  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme="dark"] {
+  --bg: #0b0d14;
+  --bg-elevated: #111420;
+  --bg-card: #161a28;
+  --bg-card-hover: #1c2133;
+  --bg-code: #0d0f18;
+  --border: #222840;
+  --border-hover: #333b58;
+  --text: #e8eaf4;
+  --text-secondary: #9ba1be;
+  --text-tertiary: #636985;
+  --primary: #818cf8;
+  --primary-hover: #6366f1;
+  --primary-subtle: rgba(129,140,248,0.08);
+  --primary-border: rgba(129,140,248,0.2);
+  --accent-teal: #2dd4bf;
+  --accent-amber: #fbbf24;
+  --accent-rose: #fb7185;
+  --accent-sky: #38bdf8;
+  --shadow-card: 0 4px 24px rgba(0,0,0,0.3);
+  --shadow-glow: 0 0 80px rgba(129,140,248,0.06);
+  --grain-opacity: 0.03;
+}
+
+[data-theme="light"] {
+  --bg: #fafbfe;
+  --bg-elevated: #ffffff;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f6f7fc;
+  --bg-code: #f0f2f8;
+  --border: #e2e5f0;
+  --border-hover: #c8cde0;
+  --text: #1a1d2e;
+  --text-secondary: #555b78;
+  --text-tertiary: #8b90a8;
+  --primary: #6366f1;
+  --primary-hover: #4f46e5;
+  --primary-subtle: rgba(99,102,241,0.06);
+  --primary-border: rgba(99,102,241,0.15);
+  --accent-teal: #0d9488;
+  --accent-amber: #d97706;
+  --accent-rose: #e11d48;
+  --accent-sky: #0284c7;
+  --shadow-card: 0 2px 12px rgba(0,0,0,0.06);
+  --shadow-glow: none;
+  --grain-opacity: 0.015;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   RESET & BASE
+   ═══════════════════════════════════════════════════════════ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  transition: background var(--transition), color var(--transition);
+  -webkit-font-smoothing: antialiased;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: var(--grain-opacity);
+  pointer-events: none;
+  z-index: 9999;
+}
+
+a { color: var(--primary); text-decoration: none; transition: color 0.2s; }
+a:hover { color: var(--primary-hover); }
+
+.container { max-width: var(--max-w); margin: 0 auto; padding: 0 24px; }
+
+/* ═══════════════════════════════════════════════════════════
+   NAV
+   ═══════════════════════════════════════════════════════════ */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: color-mix(in srgb, var(--bg) 85%, transparent);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  transition: background var(--transition), border-color var(--transition);
+}
+
+.nav-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 24px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--text);
+}
+
+.nav-logo-mark {
+  width: 30px;
+  height: 30px;
+  background: linear-gradient(135deg, var(--primary), var(--accent-teal));
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 700;
+  color: white;
+}
+
+.nav-logo-text {
+  font-family: var(--font-display);
+  font-size: 19px;
+  font-weight: 600;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.nav-links a {
+  font-size: 14px;
+  color: var(--text-secondary);
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--text); }
+
+.theme-toggle {
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg-elevated);
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  font-size: 16px;
+}
+
+.theme-toggle:hover { border-color: var(--border-hover); color: var(--text); }
+
+.nav-mobile-toggle { display: none; }
+
+/* ═══════════════════════════════════════════════════════════
+   HERO
+   ═══════════════════════════════════════════════════════════ */
+.hero {
+  padding: 140px 24px 100px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -120px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, var(--primary-subtle) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.hero-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 14px;
+  background: var(--primary-subtle);
+  border: 1px solid var(--primary-border);
+  border-radius: 100px;
+  font-size: 13px;
+  color: var(--primary);
+  font-weight: 500;
+  margin-bottom: 28px;
+  animation: fadeUp 0.5s ease;
+}
+
+.hero-pill .pulse-dot {
+  width: 6px; height: 6px;
+  background: var(--accent-teal);
+  border-radius: 50%;
+  animation: blink 2s infinite;
+}
+
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 5.5vw, 68px);
+  font-weight: 700;
+  line-height: 1.08;
+  margin-bottom: 20px;
+  animation: fadeUp 0.5s ease 0.05s both;
+}
+
+.hero h1 .em {
+  background: linear-gradient(135deg, var(--primary), var(--accent-teal));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-sub {
+  font-size: clamp(16px, 2vw, 19px);
+  color: var(--text-secondary);
+  max-width: 560px;
+  margin: 0 auto 36px;
+  line-height: 1.6;
+  font-weight: 400;
+  animation: fadeUp 0.5s ease 0.1s both;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  animation: fadeUp 0.5s ease 0.15s both;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 26px;
+  border-radius: 8px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+.btn-primary:hover {
+  background: var(--primary-hover);
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 24px rgba(99,102,241,0.25);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text);
+  border-color: var(--border);
+}
+
+.btn-ghost:hover {
+  background: var(--bg-card);
+  color: var(--text);
+  border-color: var(--border-hover);
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   AXIOMS
+   ═══════════════════════════════════════════════════════════ */
+.axioms {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 40px 24px;
+  display: flex;
+  justify-content: center;
+  gap: 48px;
+  flex-wrap: wrap;
+  transition: border-color var(--transition);
+}
+
+.axiom {
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.5px;
+}
+
+.axiom strong {
+  color: var(--accent-teal);
+  font-weight: 500;
+}
+
+.axiom span {
+  color: var(--text-tertiary);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   PROJECTS
+   ═══════════════════════════════════════════════════════════ */
+.section {
+  padding: 80px 24px;
+}
+
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--primary);
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.project-grid {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+.project-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 28px;
+  text-decoration: none;
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  transition: all 0.25s;
+}
+
+.project-card:hover {
+  border-color: var(--primary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-card);
+  color: var(--text);
+}
+
+.project-card .icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 14px;
+  border: 1px solid var(--border);
+}
+
+.project-card .icon.ul { background: var(--primary-subtle); color: var(--primary); border-color: var(--primary-border); }
+.project-card .icon.tr { background: rgba(45,212,191,0.08); color: var(--accent-teal); border-color: rgba(45,212,191,0.2); }
+.project-card .icon.gn { background: rgba(56,189,248,0.08); color: var(--accent-sky); border-color: rgba(56,189,248,0.2); }
+
+.project-card h3 {
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.project-card .badge {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--accent-teal);
+  background: rgba(45,212,191,0.08);
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  width: fit-content;
+}
+
+.project-card p {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  flex: 1;
+}
+
+.project-card .arrow {
+  margin-top: 14px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   CODE PREVIEW
+   ═══════════════════════════════════════════════════════════ */
+.code-section {
+  padding: 80px 24px;
+  border-top: 1px solid var(--border);
+}
+
+.code-container {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.code-block {
+  background: var(--bg-code);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.code-header {
+  display: flex;
+  align-items: center;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border);
+  gap: 8px;
+}
+
+.code-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+}
+
+.code-dot.r { background: #ef4444; }
+.code-dot.y { background: #eab308; }
+.code-dot.g { background: #22c55e; }
+
+.code-filename {
+  margin-left: 8px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-tertiary);
+}
+
+.code-body {
+  padding: 20px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.7;
+  overflow-x: auto;
+  color: var(--text-secondary);
+}
+
+.code-body .kw { color: #c792ea; }
+.code-body .fn { color: #82aaff; }
+.code-body .str { color: #c3e88d; }
+.code-body .num { color: #f78c6c; }
+.code-body .cm { color: #546e7a; }
+.code-body .ty { color: #ffcb6b; }
+.code-body .op { color: #89ddff; }
+.code-body .hd { color: #22d3ee; }
+
+[data-theme="light"] .code-body .kw { color: #7c3aed; }
+[data-theme="light"] .code-body .fn { color: #2563eb; }
+[data-theme="light"] .code-body .str { color: #16a34a; }
+[data-theme="light"] .code-body .num { color: #ea580c; }
+[data-theme="light"] .code-body .cm { color: #94a3b8; }
+[data-theme="light"] .code-body .ty { color: #b45309; }
+[data-theme="light"] .code-body .op { color: #0891b2; }
+[data-theme="light"] .code-body .hd { color: #0d9488; }
+
+.code-caption {
+  text-align: center;
+  margin-top: 16px;
+  font-size: 13px;
+  color: var(--text-tertiary);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   HOW IT WORKS
+   ═══════════════════════════════════════════════════════════ */
+.steps-container {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.step {
+  display: flex;
+  gap: 20px;
+  padding: 18px 0;
+}
+
+.step-marker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.step-num {
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  background: var(--primary-subtle);
+  border: 1px solid var(--primary-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.step-line {
+  flex: 1;
+  width: 1px;
+  background: var(--border);
+  margin: 6px 0;
+}
+
+.step-body h4 {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.step-body p {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   ARCHITECTURE TABLE
+   ═══════════════════════════════════════════════════════════ */
+.arch-section { border-top: 1px solid var(--border); }
+
+.arch-table {
+  max-width: 700px;
+  margin: 0 auto;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.arch-table th,
+.arch-table td {
+  text-align: left;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+}
+
+.arch-table th {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-tertiary);
+  font-weight: 500;
+}
+
+.arch-table td:first-child {
+  font-weight: 600;
+  color: var(--primary);
+  font-family: var(--font-mono);
+  font-size: 13px;
+}
+
+.arch-table td:nth-child(2) { font-weight: 600; }
+.arch-table td:nth-child(3) { color: var(--text-secondary); }
+
+/* ═══════════════════════════════════════════════════════════
+   RESOURCES
+   ═══════════════════════════════════════════════════════════ */
+.resources {
+  border-top: 1px solid var(--border);
+  padding: 48px 24px;
+}
+
+.resource-links {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+
+.resource-links a {
+  font-size: 14px;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.resource-links a:hover { color: var(--primary); }
+
+/* ═══════════════════════════════════════════════════════════
+   FOOTER
+   ═══════════════════════════════════════════════════════════ */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 40px 24px;
+  text-align: center;
+}
+
+footer .motto {
+  font-family: var(--font-display);
+  font-size: 17px;
+  color: var(--text-secondary);
+  font-style: italic;
+  margin-bottom: 10px;
+}
+
+footer .info {
+  font-size: 13px;
+  color: var(--text-tertiary);
+  line-height: 1.7;
+}
+
+footer a { color: var(--text-secondary); }
+footer a:hover { color: var(--text); }
+
+/* ═══════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .nav-links a:not(.theme-toggle-wrap) { display: none; }
+  .nav-mobile-toggle { display: flex; }
+  .hero { padding: 110px 20px 60px; }
+  .axioms { gap: 24px; padding: 28px 20px; }
+  .axiom { font-size: 11px; }
+  .section { padding: 50px 16px; }
+  .project-grid { grid-template-columns: 1fr; }
+  .arch-table { font-size: 13px; }
+  .arch-table th, .arch-table td { padding: 10px 12px; }
+}
+
+@media (max-width: 480px) {
+  .hero h1 { font-size: 32px; }
+  .hero-buttons { flex-direction: column; align-items: center; }
+  .btn { width: 100%; justify-content: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="/">
+      <div class="nav-logo-mark">U</div>
+      <span class="nav-logo-text">ULissy</span>
+    </a>
+    <div class="nav-links">
+      <a href="/playground/">Playground</a>
+      <a href="https://datatracker.ietf.org/doc/draft-ayerbe-trip-protocol/">IETF Draft</a>
+      <a href="https://github.com/GNS-Foundation/ulissy/blob/main/docs/whitepaper/WHITEPAPER.md">Whitepaper</a>
+      <a href="https://github.com/GNS-Foundation">GitHub</a>
+      <span class="theme-toggle-wrap">
+        <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+          <span id="theme-icon">☀</span>
+        </button>
+      </span>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-pill">
+    <span class="pulse-dot"></span>
+    IETF Internet-Draft published · Revision -02
+  </div>
+  <h1>
+    The <span class="em">identity layer</span><br>
+    the internet never had
+  </h1>
+  <p class="hero-sub">
+    ULissy is a programming language for moving machines. 
+    The GNS Protocol proves humanity through movement — 
+    not biometrics, not corporations, not CAPTCHAs.
+  </p>
+  <div class="hero-buttons">
+    <a class="btn btn-primary" href="/playground/">Try the Playground</a>
+    <a class="btn btn-ghost" href="https://github.com/GNS-Foundation">View on GitHub</a>
+  </div>
+</section>
+
+<!-- AXIOMS -->
+<div class="axioms">
+  <div class="axiom"><strong>Identity</strong> <span>= Public Key</span></div>
+  <div class="axiom"><strong>Proof</strong> <span>= Trajectory</span></div>
+  <div class="axiom"><strong>Trust</strong> <span>= Movement</span></div>
+  <div class="axiom"><strong>Privacy</strong> <span>= Default</span></div>
+</div>
+
+<!-- PROJECTS -->
+<section class="section">
+  <div class="section-label">Ecosystem</div>
+  <h2 class="section-title">What we're building</h2>
+  <div class="project-grid">
+    <a class="project-card" href="/playground/">
+      <div class="icon ul">UL</div>
+      <h3>ULissy Language</h3>
+      <div class="badge">v0.4.2 · 74/74 tests passing</div>
+      <p>A domain-specific programming language for moving machines. Identity, location, time, cryptography, and energy as first-class primitives. Transpiles to Rust.</p>
+      <span class="arrow">Open Playground →</span>
+    </a>
+    <a class="project-card" href="https://datatracker.ietf.org/doc/draft-ayerbe-trip-protocol/">
+      <div class="icon tr">TR</div>
+      <h3>TRIP Protocol</h3>
+      <div class="badge">IETF Internet-Draft · revision -02</div>
+      <p>Trajectory-based Identity Proof. Defines how devices collect, sign, and verify location breadcrumbs to prove human presence without biometric hardware.</p>
+      <span class="arrow">IETF Datatracker →</span>
+    </a>
+    <a class="project-card" href="https://github.com/GNS-Foundation/gns-mobile">
+      <div class="icon gn">GN</div>
+      <h3>GNS Browser</h3>
+      <div class="badge">Flutter · Live on Android</div>
+      <p>Mobile app with encrypted messaging, handle-based payments on Stellar, DIX microblogging, and spatial identity discovery. Your identity in your pocket.</p>
+      <span class="arrow">View Source →</span>
+    </a>
+  </div>
+</section>
+
+<!-- CODE PREVIEW -->
+<section class="code-section">
+  <div class="section-label">Language</div>
+  <h2 class="section-title">Code that understands space</h2>
+  <div class="code-container">
+    <div class="code-block">
+      <div class="code-header">
+        <div class="code-dot r"></div>
+        <div class="code-dot y"></div>
+        <div class="code-dot g"></div>
+        <span class="code-filename">breadcrumb.ul</span>
+      </div>
+      <div class="code-body"><span class="cm">// 15 lines of ULissy replaces ~250 lines of Rust</span>
+
+<span class="kw">identity</span> me = <span class="ty">Keychain</span>.primary
+
+<span class="kw">every</span> <span class="num">10</span>.minutes <span class="kw">when</span> battery > <span class="num">20</span> && gps.available {
+    <span class="kw">let</span> crumb = <span class="fn">breadcrumb</span>(
+        cell: here.<span class="fn">h3</span>(<span class="num">7</span>),
+        context: sensors.digest,
+        previous: me.trajectory.last<span class="op">?.</span>hash <span class="op">??</span> <span class="str">"genesis"</span>
+    ).<span class="fn">signed</span>(me)
+
+    me.trajectory.<span class="fn">append</span>(crumb)
+}
+
+<span class="kw">when</span> me.trajectory.pending >= <span class="num">100</span> {
+    <span class="kw">let</span> epoch = me.trajectory.<span class="fn">bundleEpoch</span>()
+    network.<span class="fn">publish</span>(epoch)
+}</div>
+    </div>
+    <p class="code-caption">Breadcrumb collection with privacy-preserving H3 quantization. No GPS library imports. No crypto boilerplate.</p>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section">
+  <div class="section-label">Protocol</div>
+  <h2 class="section-title">How Proof-of-Trajectory works</h2>
+  <div class="steps-container">
+    <div class="step">
+      <div class="step-marker">
+        <div class="step-num">1</div>
+        <div class="step-line"></div>
+      </div>
+      <div class="step-body">
+        <h4>Move through the world</h4>
+        <p>Your phone collects location breadcrumbs as you go about your day. No special hardware — any smartphone works.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-marker">
+        <div class="step-num">2</div>
+        <div class="step-line"></div>
+      </div>
+      <div class="step-body">
+        <h4>Privacy-preserving quantization</h4>
+        <p>Raw GPS is never stored or transmitted. Locations are quantized to H3 hexagonal cells (~15,000 m²) — enough to prove movement, not enough to track you.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-marker">
+        <div class="step-num">3</div>
+        <div class="step-line"></div>
+      </div>
+      <div class="step-body">
+        <h4>Sign and chain</h4>
+        <p>Each breadcrumb is signed with your Ed25519 key and hash-linked to the previous one, forming an unforgeable chain of presence.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-marker">
+        <div class="step-num">4</div>
+        <div class="step-line"></div>
+      </div>
+      <div class="step-body">
+        <h4>Bundle into Epochs</h4>
+        <p>100+ breadcrumbs form an Epoch — a verifiable proof that a real human moved through real space over real time.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-marker">
+        <div class="step-num">5</div>
+      </div>
+      <div class="step-body">
+        <h4>Earn trust, claim your @handle</h4>
+        <p>Epochs accumulate into a trust score. At threshold, claim your permanent @handle. No email, no phone number. Just your trajectory.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ARCHITECTURE -->
+<section class="section arch-section">
+  <div class="section-label">Architecture</div>
+  <h2 class="section-title">Protocol stack</h2>
+  <div class="container">
+    <table class="arch-table">
+      <thead>
+        <tr><th>Layer</th><th>Protocol</th><th>Purpose</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Identity</td><td>GNS</td><td>@handle naming, Ed25519 keys, facet addressing</td></tr>
+        <tr><td>Proof</td><td>TRIP</td><td>Trajectory collection, epoch bundling, trust scoring</td></tr>
+        <tr><td>Language</td><td>ULissy</td><td>Domain-specific compiler for spatial-identity programs</td></tr>
+        <tr><td>Payments</td><td>IDUP</td><td>Handle-based payments on Stellar (USDC/EURC)</td></tr>
+        <tr><td>Discovery</td><td>TrIP Search</td><td>Spatial-identity search ranked by cryptographic trust</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- RESOURCES -->
+<section class="resources">
+  <div class="section-label" style="margin-bottom:20px;">Resources</div>
+  <div class="resource-links">
+    <a href="/playground/">Playground</a>
+    <a href="https://github.com/GNS-Foundation/ulissy/blob/main/docs/whitepaper/WHITEPAPER.md">Whitepaper</a>
+    <a href="https://github.com/GNS-Foundation/ulissy/blob/main/docs/GRAMMAR.md">Grammar (93 rules)</a>
+    <a href="https://datatracker.ietf.org/doc/draft-ayerbe-trip-protocol/">IETF Draft</a>
+    <a href="https://github.com/GNS-Foundation">GitHub</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="motto">"The journey is the proof."</div>
+  <div class="info">
+    ULISSY s.r.l. · Rome, Italy · <a href="mailto:cayerbe@ulissy.app">cayerbe@ulissy.app</a><br>
+    Provisional Patent #63/948,788 · MIT / Apache 2.0 / BSL 1.1
+  </div>
+</footer>
+
+<script>
+function getTheme() {
+  return localStorage.getItem('theme') || 
+    (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+}
+
+function applyTheme(t) {
+  document.documentElement.setAttribute('data-theme', t);
+  document.getElementById('theme-icon').textContent = t === 'dark' ? '☀' : '☾';
+  localStorage.setItem('theme', t);
+}
+
+function toggleTheme() {
+  applyTheme(getTheme() === 'dark' ? 'light' : 'dark');
+}
+
+applyTheme(getTheme());
+</script>
+</body>
+</html>

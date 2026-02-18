@@ -1,124 +1,84 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ULissy — The Identity Layer the Internet Never Had</title>
-<meta name="description" content="ULissy: A programming language for moving machines. GNS Protocol proves humanity through Proof-of-Trajectory, not biometrics.">
-<meta property="og:title" content="ULissy — Identity Through Movement">
-<meta property="og:description" content="A programming language for moving machines. Proof-of-Trajectory identity protocol.">
+<title>GNS Protocol — The Identity Layer the Internet Never Had</title>
+<meta name="description" content="Geospatial Naming System: decentralized identity through Proof-of-Trajectory. Identity = Public Key. No passwords, no intermediaries.">
+<meta property="og:title" content="GNS Protocol — The Identity Layer the Internet Never Had">
+<meta property="og:description" content="Decentralized identity through Proof-of-Trajectory. Ed25519 cryptographic identity, H3 geospatial quantization, zero intermediaries.">
+<meta property="og:image" content="https://www.ulissy.app/og-image.png">
+<meta property="og:url" content="https://www.ulissy.app/">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://ulissy.app">
-<link rel="canonical" href="https://ulissy.app">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="logo.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-/* ═══════════════════════════════════════════════════════════
-   THEME SYSTEM
-   ═══════════════════════════════════════════════════════════ */
 :root {
-  --font-display: 'Fraunces', serif;
-  --font-body: 'Outfit', sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
-  --max-w: 1140px;
-  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --cyan: #0099cc;
+  --cyan-dim: rgba(0,153,204,.1);
+  --cyan-border: rgba(0,153,204,.2);
+  --green: #00c853;
+  --orange: #ff6d00;
+  --purple: #7c3aed;
+  --bg: #0b0f1a;
+  --bg2: #111827;
+  --bg3: #161d2e;
+  --surface: #1c2536;
+  --border: rgba(255,255,255,.07);
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --text3: #5a6a80;
+  --white: #f1f5f9;
+  --mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
 }
 
-[data-theme="dark"] {
-  --bg: #0b0d14;
-  --bg-elevated: #111420;
-  --bg-card: #161a28;
-  --bg-card-hover: #1c2133;
-  --bg-code: #0d0f18;
-  --border: #222840;
-  --border-hover: #333b58;
-  --text: #e8eaf4;
-  --text-secondary: #9ba1be;
-  --text-tertiary: #636985;
-  --primary: #818cf8;
-  --primary-hover: #6366f1;
-  --primary-subtle: rgba(129,140,248,0.08);
-  --primary-border: rgba(129,140,248,0.2);
-  --accent-teal: #2dd4bf;
-  --accent-amber: #fbbf24;
-  --accent-rose: #fb7185;
-  --accent-sky: #38bdf8;
-  --shadow-card: 0 4px 24px rgba(0,0,0,0.3);
-  --shadow-glow: 0 0 80px rgba(129,140,248,0.06);
-  --grain-opacity: 0.03;
+body.light {
+  --bg: #f8fafc;
+  --bg2: #f1f5f9;
+  --bg3: #e8edf5;
+  --surface: #ffffff;
+  --border: rgba(0,0,0,.07);
+  --text: #1e293b;
+  --text2: #475569;
+  --text3: #94a3b8;
+  --white: #0f172a;
 }
 
-[data-theme="light"] {
-  --bg: #fafbfe;
-  --bg-elevated: #ffffff;
-  --bg-card: #ffffff;
-  --bg-card-hover: #f6f7fc;
-  --bg-code: #f0f2f8;
-  --border: #e2e5f0;
-  --border-hover: #c8cde0;
-  --text: #1a1d2e;
-  --text-secondary: #555b78;
-  --text-tertiary: #8b90a8;
-  --primary: #6366f1;
-  --primary-hover: #4f46e5;
-  --primary-subtle: rgba(99,102,241,0.06);
-  --primary-border: rgba(99,102,241,0.15);
-  --accent-teal: #0d9488;
-  --accent-amber: #d97706;
-  --accent-rose: #e11d48;
-  --accent-sky: #0284c7;
-  --shadow-card: 0 2px 12px rgba(0,0,0,0.06);
-  --shadow-glow: none;
-  --grain-opacity: 0.015;
-}
-
-/* ═══════════════════════════════════════════════════════════
-   RESET & BASE
-   ═══════════════════════════════════════════════════════════ */
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-  font-family: var(--font-body);
+  font-family: 'Inter', -apple-system, sans-serif;
   background: var(--bg);
   color: var(--text);
-  line-height: 1.6;
-  transition: background var(--transition), color var(--transition);
+  line-height: 1.7;
   -webkit-font-smoothing: antialiased;
 }
 
-body::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  opacity: var(--grain-opacity);
-  pointer-events: none;
-  z-index: 9999;
+body, nav, .hero, section, .card, .code-block, footer, .nav-inner,
+.theme-btn, .spec-card, .ext-card, .live-card, .cta-box {
+  transition: background .4s, color .4s, border-color .4s, box-shadow .4s;
 }
 
-a { color: var(--primary); text-decoration: none; transition: color 0.2s; }
-a:hover { color: var(--primary-hover); }
-
-.container { max-width: var(--max-w); margin: 0 auto; padding: 0 24px; }
-
-/* ═══════════════════════════════════════════════════════════
-   NAV
-   ═══════════════════════════════════════════════════════════ */
+/* ── NAV ── */
 nav {
-  position: fixed;
+  position: sticky;
   top: 0;
-  left: 0;
-  right: 0;
   z-index: 100;
-  background: color-mix(in srgb, var(--bg) 85%, transparent);
+  background: rgba(11,15,26,.85);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border);
-  transition: background var(--transition), border-color var(--transition);
+}
+
+body.light nav {
+  background: rgba(248,250,252,.88);
 }
 
 .nav-inner {
-  max-width: var(--max-w);
+  max-width: 1100px;
   margin: 0 auto;
   padding: 0 24px;
   height: 56px;
@@ -127,74 +87,78 @@ nav {
   justify-content: space-between;
 }
 
-.nav-logo {
+.nav-brand {
   display: flex;
   align-items: center;
   gap: 10px;
   text-decoration: none;
-  color: var(--text);
-}
-
-.nav-logo-mark {
-  width: 30px;
-  height: 30px;
-  background: linear-gradient(135deg, var(--primary), var(--accent-teal));
-  border-radius: 7px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-display);
-  font-size: 17px;
+  color: var(--white);
   font-weight: 700;
-  color: white;
+  font-size: 16px;
 }
 
-.nav-logo-text {
-  font-family: var(--font-display);
-  font-size: 19px;
+.nav-brand img {
+  height: 28px;
+  width: 28px;
+  border-radius: 6px;
+  object-fit: cover;
+}
+
+.nav-brand .proto-tag {
+  font-size: 10px;
   font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--cyan);
+  background: var(--cyan-dim);
+  padding: 2px 8px;
+  border-radius: 10px;
 }
 
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 28px;
+  gap: 6px;
 }
 
 .nav-links a {
-  font-size: 14px;
-  color: var(--text-secondary);
+  color: var(--text2);
+  text-decoration: none;
+  font-size: 13px;
   font-weight: 500;
-  transition: color 0.2s;
-}
-
-.nav-links a:hover { color: var(--text); }
-
-.theme-toggle {
-  width: 36px;
-  height: 36px;
-  border: 1px solid var(--border);
+  padding: 6px 12px;
   border-radius: 8px;
-  background: var(--bg-elevated);
-  color: var(--text-secondary);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.2s;
-  font-size: 16px;
+  transition: all .2s;
 }
 
-.theme-toggle:hover { border-color: var(--border-hover); color: var(--text); }
+.nav-links a:hover { color: var(--white); background: var(--cyan-dim); }
 
-.nav-mobile-toggle { display: none; }
+.nav-links a.products {
+  color: var(--green);
+  border: 1px solid rgba(0,200,83,.2);
+}
 
-/* ═══════════════════════════════════════════════════════════
-   HERO
-   ═══════════════════════════════════════════════════════════ */
+.nav-links a.products:hover { background: rgba(0,200,83,.1); }
+
+.theme-btn {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text2);
+  font-size: 13px;
+  padding: 5px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: inherit;
+  margin-left: 8px;
+  transition: all .2s;
+}
+
+.theme-btn:hover { color: var(--white); }
+
+/* ── HERO ── */
 .hero {
-  padding: 140px 24px 100px;
   text-align: center;
+  padding: 100px 24px 80px;
   position: relative;
   overflow: hidden;
 }
@@ -202,723 +166,820 @@ nav {
 .hero::before {
   content: '';
   position: absolute;
-  top: -120px;
+  top: -200px;
   left: 50%;
   transform: translateX(-50%);
-  width: 700px;
-  height: 700px;
-  background: radial-gradient(circle, var(--primary-subtle) 0%, transparent 65%);
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(circle, rgba(0,153,204,.06) 0%, transparent 70%);
   pointer-events: none;
 }
 
-.hero-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 5px 14px;
-  background: var(--primary-subtle);
-  border: 1px solid var(--primary-border);
-  border-radius: 100px;
-  font-size: 13px;
-  color: var(--primary);
-  font-weight: 500;
-  margin-bottom: 28px;
-  animation: fadeUp 0.5s ease;
+.hero-equation {
+  font-family: var(--mono);
+  font-size: clamp(20px, 3.5vw, 36px);
+  font-weight: 600;
+  color: var(--cyan);
+  letter-spacing: 2px;
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 1;
 }
-
-.hero-pill .pulse-dot {
-  width: 6px; height: 6px;
-  background: var(--accent-teal);
-  border-radius: 50%;
-  animation: blink 2s infinite;
-}
-
-@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
 
 .hero h1 {
-  font-family: var(--font-display);
-  font-size: clamp(36px, 5.5vw, 68px);
-  font-weight: 700;
+  font-size: clamp(36px, 5vw, 62px);
+  font-weight: 800;
   line-height: 1.08;
-  margin-bottom: 20px;
-  animation: fadeUp 0.5s ease 0.05s both;
+  max-width: 800px;
+  margin: 0 auto 20px;
+  position: relative;
+  z-index: 1;
+  color: var(--white);
 }
 
-.hero h1 .em {
-  background: linear-gradient(135deg, var(--primary), var(--accent-teal));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+.hero .sub {
+  font-size: 18px;
+  color: var(--text2);
+  max-width: 640px;
+  margin: 0 auto 40px;
+  font-weight: 300;
+  position: relative;
+  z-index: 1;
 }
 
-.hero-sub {
-  font-size: clamp(16px, 2vw, 19px);
-  color: var(--text-secondary);
-  max-width: 560px;
-  margin: 0 auto 36px;
-  line-height: 1.6;
-  font-weight: 400;
-  animation: fadeUp 0.5s ease 0.1s both;
-}
-
-.hero-buttons {
+.hero-links {
   display: flex;
   gap: 12px;
   justify-content: center;
   flex-wrap: wrap;
-  animation: fadeUp 0.5s ease 0.15s both;
+  position: relative;
+  z-index: 1;
 }
 
-.btn {
+.hero-links a {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 11px 26px;
-  border-radius: 8px;
-  font-family: var(--font-body);
+  gap: 6px;
+  padding: 10px 22px;
+  border-radius: 10px;
   font-size: 14px;
   font-weight: 600;
   text-decoration: none;
-  border: 1px solid transparent;
-  transition: all 0.2s;
-  cursor: pointer;
+  transition: all .2s;
 }
 
 .btn-primary {
-  background: var(--primary);
-  color: white;
-  border-color: var(--primary);
+  background: var(--cyan);
+  color: #fff;
 }
 
-.btn-primary:hover {
-  background: var(--primary-hover);
-  color: white;
-  transform: translateY(-1px);
-  box-shadow: 0 6px 24px rgba(99,102,241,0.25);
-}
+.btn-primary:hover { background: #00aadd; transform: translateY(-1px); }
 
 .btn-ghost {
   background: transparent;
-  color: var(--text);
-  border-color: var(--border);
+  color: var(--text2);
+  border: 1px solid var(--border);
 }
 
-.btn-ghost:hover {
-  background: var(--bg-card);
-  color: var(--text);
-  border-color: var(--border-hover);
-}
+.btn-ghost:hover { color: var(--white); border-color: var(--cyan-border); }
 
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(16px); }
-  to { opacity: 1; transform: translateY(0); }
-}
+/* ── CONTAINER ── */
+.container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
 
-/* ═══════════════════════════════════════════════════════════
-   AXIOMS
-   ═══════════════════════════════════════════════════════════ */
-.axioms {
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  padding: 40px 24px;
-  display: flex;
-  justify-content: center;
-  gap: 48px;
-  flex-wrap: wrap;
-  transition: border-color var(--transition);
-}
+/* ── SECTIONS ── */
+section { padding: 80px 0; border-top: 1px solid var(--border); }
 
-.axiom {
-  text-align: center;
-  font-family: var(--font-mono);
-  font-size: 13px;
-  letter-spacing: 0.5px;
-}
-
-.axiom strong {
-  color: var(--accent-teal);
-  font-weight: 500;
-}
-
-.axiom span {
-  color: var(--text-tertiary);
-}
-
-/* ═══════════════════════════════════════════════════════════
-   PROJECTS
-   ═══════════════════════════════════════════════════════════ */
-.section {
-  padding: 80px 24px;
-}
-
-.section-label {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 2px;
+.sec-label {
+  font-size: 12px;
+  font-weight: 700;
   text-transform: uppercase;
-  color: var(--primary);
-  text-align: center;
+  letter-spacing: 3px;
+  color: var(--cyan);
+  margin-bottom: 8px;
+}
+
+h2 {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--white);
   margin-bottom: 12px;
 }
 
-.section-title {
-  font-family: var(--font-display);
-  font-size: clamp(28px, 4vw, 40px);
-  font-weight: 700;
-  text-align: center;
-  margin-bottom: 48px;
+.sec-desc {
+  font-size: 16px;
+  color: var(--text2);
+  max-width: 640px;
+  margin-bottom: 40px;
 }
 
-.project-grid {
-  max-width: var(--max-w);
-  margin: 0 auto;
+h3 {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--white);
+  margin: 32px 0 10px;
+}
+
+p { font-size: 16px; color: var(--text2); margin-bottom: 14px; }
+
+/* ── SPEC CARDS (3-col) ── */
+.spec-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
 }
 
-.project-card {
-  background: var(--bg-card);
+@media (max-width: 768px) { .spec-grid { grid-template-columns: 1fr; } }
+
+.spec-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 28px;
+}
+
+body.light .spec-card { box-shadow: 0 1px 3px rgba(0,0,0,.05); }
+
+.spec-card .sc-label {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--cyan);
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+}
+
+.spec-card .sc-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+
+.spec-card .sc-text {
+  font-size: 14px;
+  color: var(--text3);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ── CODE BLOCKS ── */
+.code-block {
+  background: var(--bg3);
   border: 1px solid var(--border);
   border-radius: 12px;
-  padding: 28px;
-  text-decoration: none;
+  padding: 24px 28px;
+  margin: 24px 0;
+  overflow-x: auto;
+}
+
+.code-block pre {
+  font-family: var(--mono);
+  font-size: 13px;
+  line-height: 1.7;
   color: var(--text);
+  margin: 0;
+}
+
+.code-block .comment { color: var(--text3); }
+.code-block .keyword { color: var(--cyan); }
+.code-block .type { color: var(--purple); }
+.code-block .string { color: var(--green); }
+.code-block .number { color: var(--orange); }
+
+.code-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--text3);
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* ── EXTENSION CARDS (2-col) ── */
+.ext-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+@media (max-width: 640px) { .ext-grid { grid-template-columns: 1fr; } }
+
+.ext-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 28px;
   display: flex;
   flex-direction: column;
-  transition: all 0.25s;
 }
 
-.project-card:hover {
-  border-color: var(--primary);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-card);
-  color: var(--text);
-}
+body.light .ext-card { box-shadow: 0 1px 3px rgba(0,0,0,.05); }
 
-.project-card .icon {
-  width: 38px;
-  height: 38px;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-mono);
-  font-size: 14px;
-  font-weight: 600;
-  margin-bottom: 14px;
-  border: 1px solid var(--border);
-}
-
-.project-card .icon.ul { background: var(--primary-subtle); color: var(--primary); border-color: var(--primary-border); }
-.project-card .icon.tr { background: rgba(45,212,191,0.08); color: var(--accent-teal); border-color: rgba(45,212,191,0.2); }
-.project-card .icon.gn { background: rgba(56,189,248,0.08); color: var(--accent-sky); border-color: rgba(56,189,248,0.2); }
-
-.project-card h3 {
-  font-size: 17px;
+.ext-card .ec-status {
+  font-size: 10px;
   font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  padding: 3px 8px;
+  border-radius: 10px;
+  display: inline-block;
+  width: fit-content;
+  margin-bottom: 12px;
+}
+
+.ec-status.live { background: rgba(0,200,83,.12); color: var(--green); }
+.ec-status.draft { background: var(--cyan-dim); color: var(--cyan); }
+
+.ext-card .ec-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--white);
   margin-bottom: 6px;
 }
 
-.project-card .badge {
-  display: inline-block;
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--accent-teal);
-  background: rgba(45,212,191,0.08);
-  padding: 2px 8px;
-  border-radius: 4px;
+.ext-card .ec-ref {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--text3);
   margin-bottom: 10px;
-  width: fit-content;
 }
 
-.project-card p {
+.ext-card .ec-desc {
   font-size: 14px;
-  color: var(--text-secondary);
+  color: var(--text2);
   line-height: 1.6;
+  margin: 0 0 14px;
   flex: 1;
 }
 
-.project-card .arrow {
-  margin-top: 14px;
+.ext-card a {
   font-size: 13px;
   font-weight: 600;
-  color: var(--primary);
+  color: var(--cyan);
+  text-decoration: none;
 }
 
-/* ═══════════════════════════════════════════════════════════
-   CODE PREVIEW
-   ═══════════════════════════════════════════════════════════ */
-.code-section {
-  padding: 80px 24px;
-  border-top: 1px solid var(--border);
+.ext-card a:hover { text-decoration: underline; }
+
+/* ── LIVE SYSTEMS ── */
+.live-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
 }
 
-.code-container {
-  max-width: 720px;
-  margin: 0 auto;
-}
+@media (max-width: 768px) { .live-grid { grid-template-columns: 1fr; } }
 
-.code-block {
-  background: var(--bg-code);
+.live-card {
+  background: var(--bg2);
   border: 1px solid var(--border);
-  border-radius: 12px;
-  overflow: hidden;
+  border-radius: 14px;
+  padding: 28px;
+  text-decoration: none;
+  display: block;
+  transition: transform .2s, border-color .2s;
 }
 
-.code-header {
-  display: flex;
-  align-items: center;
-  padding: 10px 16px;
-  border-bottom: 1px solid var(--border);
-  gap: 8px;
+.live-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--cyan-border);
 }
 
-.code-dot {
-  width: 10px; height: 10px;
-  border-radius: 50%;
+body.light .live-card { box-shadow: 0 1px 3px rgba(0,0,0,.05); }
+
+.live-card .lc-stat {
+  font-size: 36px;
+  font-weight: 800;
+  color: var(--cyan);
+  line-height: 1;
+  margin-bottom: 6px;
 }
 
-.code-dot.r { background: #ef4444; }
-.code-dot.y { background: #eab308; }
-.code-dot.g { background: #22c55e; }
-
-.code-filename {
-  margin-left: 8px;
-  font-family: var(--font-mono);
-  font-size: 12px;
-  color: var(--text-tertiary);
-}
-
-.code-body {
-  padding: 20px;
-  font-family: var(--font-mono);
-  font-size: 13px;
-  line-height: 1.7;
-  overflow-x: auto;
-  color: var(--text-secondary);
-}
-
-.code-body .kw { color: #c792ea; }
-.code-body .fn { color: #82aaff; }
-.code-body .str { color: #c3e88d; }
-.code-body .num { color: #f78c6c; }
-.code-body .cm { color: #546e7a; }
-.code-body .ty { color: #ffcb6b; }
-.code-body .op { color: #89ddff; }
-.code-body .hd { color: #22d3ee; }
-
-[data-theme="light"] .code-body .kw { color: #7c3aed; }
-[data-theme="light"] .code-body .fn { color: #2563eb; }
-[data-theme="light"] .code-body .str { color: #16a34a; }
-[data-theme="light"] .code-body .num { color: #ea580c; }
-[data-theme="light"] .code-body .cm { color: #94a3b8; }
-[data-theme="light"] .code-body .ty { color: #b45309; }
-[data-theme="light"] .code-body .op { color: #0891b2; }
-[data-theme="light"] .code-body .hd { color: #0d9488; }
-
-.code-caption {
-  text-align: center;
-  margin-top: 16px;
-  font-size: 13px;
-  color: var(--text-tertiary);
-}
-
-/* ═══════════════════════════════════════════════════════════
-   HOW IT WORKS
-   ═══════════════════════════════════════════════════════════ */
-.steps-container {
-  max-width: 640px;
-  margin: 0 auto;
-}
-
-.step {
-  display: flex;
-  gap: 20px;
-  padding: 18px 0;
-}
-
-.step-marker {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  flex-shrink: 0;
-}
-
-.step-num {
-  width: 34px; height: 34px;
-  border-radius: 50%;
-  background: var(--primary-subtle);
-  border: 1px solid var(--primary-border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-mono);
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--primary);
-}
-
-.step-line {
-  flex: 1;
-  width: 1px;
-  background: var(--border);
-  margin: 6px 0;
-}
-
-.step-body h4 {
+.live-card .lc-title {
   font-size: 15px;
   font-weight: 600;
+  color: var(--white);
   margin-bottom: 4px;
 }
 
-.step-body p {
+.live-card .lc-desc {
   font-size: 13px;
-  color: var(--text-secondary);
-  line-height: 1.55;
+  color: var(--text3);
+  line-height: 1.5;
 }
 
-/* ═══════════════════════════════════════════════════════════
-   ARCHITECTURE TABLE
-   ═══════════════════════════════════════════════════════════ */
-.arch-section { border-top: 1px solid var(--border); }
+.live-card .lc-link {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--cyan);
+  margin-top: 10px;
+  display: block;
+  opacity: .7;
+}
 
-.arch-table {
-  max-width: 700px;
-  margin: 0 auto;
+/* ── ULISSY LANGUAGE SECTION ── */
+.lang-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.lang-header h2 { margin: 0; }
+
+.lang-badge {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 8px;
+  background: rgba(124,58,237,.12);
+  color: var(--purple);
+  letter-spacing: 1px;
+}
+
+.type-table {
   width: 100%;
-  border-collapse: collapse;
-}
-
-.arch-table th,
-.arch-table td {
-  text-align: left;
-  padding: 12px 16px;
-  border-bottom: 1px solid var(--border);
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  margin: 24px 0;
   font-size: 14px;
 }
 
-.arch-table th {
-  font-family: var(--font-mono);
+.type-table thead th {
+  background: var(--bg3);
+  padding: 12px 18px;
+  text-align: left;
   font-size: 11px;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  color: var(--text-tertiary);
-  font-weight: 500;
+  letter-spacing: 1.5px;
+  color: var(--text3);
+  border-bottom: 1px solid var(--border);
 }
 
-.arch-table td:first-child {
-  font-weight: 600;
-  color: var(--primary);
-  font-family: var(--font-mono);
+.type-table td {
+  padding: 10px 18px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text2);
+}
+
+.type-table tr:last-child td { border-bottom: none; }
+
+.type-table .mono {
+  font-family: var(--mono);
   font-size: 13px;
+  color: var(--cyan);
 }
 
-.arch-table td:nth-child(2) { font-weight: 600; }
-.arch-table td:nth-child(3) { color: var(--text-secondary); }
+/* ── CTA BOX ── */
+.cta-box {
+  text-align: center;
+  padding: 48px 32px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  margin: 40px 0;
+}
 
-/* ═══════════════════════════════════════════════════════════
-   RESOURCES
-   ═══════════════════════════════════════════════════════════ */
-.resources {
+.cta-box h3 {
+  font-size: 24px;
+  margin: 0 0 8px;
+}
+
+.cta-box p {
+  color: var(--text3);
+  max-width: 500px;
+  margin: 0 auto 24px;
+  font-size: 15px;
+}
+
+.cta-links {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.cta-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 22px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all .2s;
+}
+
+/* ── FOOTER ── */
+footer {
   border-top: 1px solid var(--border);
   padding: 48px 24px;
 }
 
-.resource-links {
-  display: flex;
-  justify-content: center;
-  gap: 28px;
-  flex-wrap: wrap;
+.footer-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 40px;
 }
 
-.resource-links a {
-  font-size: 14px;
-  color: var(--text-secondary);
-  font-weight: 500;
-}
-
-.resource-links a:hover { color: var(--primary); }
-
-/* ═══════════════════════════════════════════════════════════
-   FOOTER
-   ═══════════════════════════════════════════════════════════ */
-footer {
-  border-top: 1px solid var(--border);
-  padding: 40px 24px;
-  text-align: center;
-}
-
-footer .motto {
-  font-family: var(--font-display);
-  font-size: 17px;
-  color: var(--text-secondary);
-  font-style: italic;
-  margin-bottom: 10px;
-}
-
-footer .info {
-  font-size: 13px;
-  color: var(--text-tertiary);
-  line-height: 1.7;
-}
-
-footer a { color: var(--text-secondary); }
-footer a:hover { color: var(--text); }
-
-/* ═══════════════════════════════════════════════════════════
-   RESPONSIVE
-   ═══════════════════════════════════════════════════════════ */
 @media (max-width: 768px) {
-  .nav-links a:not(.theme-toggle-wrap) { display: none; }
-  .nav-mobile-toggle { display: flex; }
-  .hero { padding: 110px 20px 60px; }
-  .axioms { gap: 24px; padding: 28px 20px; }
-  .axiom { font-size: 11px; }
-  .section { padding: 50px 16px; }
-  .project-grid { grid-template-columns: 1fr; }
-  .arch-table { font-size: 13px; }
-  .arch-table th, .arch-table td { padding: 10px 12px; }
+  .footer-inner { grid-template-columns: 1fr 1fr; gap: 28px; }
 }
 
-@media (max-width: 480px) {
-  .hero h1 { font-size: 32px; }
-  .hero-buttons { flex-direction: column; align-items: center; }
-  .btn { width: 100%; justify-content: center; }
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.footer-brand img {
+  height: 24px;
+  width: 24px;
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+.footer-brand span {
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--white);
+}
+
+.footer-tagline {
+  font-size: 13px;
+  color: var(--text3);
+  margin-bottom: 16px;
+  line-height: 1.6;
+}
+
+.footer-legal {
+  font-size: 11px;
+  color: var(--text3);
+  opacity: .6;
+}
+
+.footer-col h4 {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--text3);
+  margin-bottom: 14px;
+}
+
+.footer-col a {
+  display: block;
+  font-size: 14px;
+  color: var(--text2);
+  text-decoration: none;
+  margin-bottom: 8px;
+  transition: color .2s;
+}
+
+.footer-col a:hover { color: var(--cyan); }
+
+.footer-col a.bridge-link { color: var(--green); }
+.footer-col a.bridge-link:hover { color: #00e065; }
+
+/* ── MOBILE NAV ── */
+@media (max-width: 640px) {
+  .nav-links a { padding: 6px 8px; font-size: 12px; }
+  .hero { padding: 72px 24px 60px; }
 }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
+<!-- ════════════════════════════════════════ -->
+<!--                  NAV                    -->
+<!-- ════════════════════════════════════════ -->
 <nav>
   <div class="nav-inner">
-    <a class="nav-logo" href="/">
-      <div class="nav-logo-mark">U</div>
-      <span class="nav-logo-text">ULissy</span>
+    <a href="/" class="nav-brand">
+      <img src="logo.png" alt="GNS">
+      GNS Protocol
+      <span class="proto-tag">Open</span>
     </a>
     <div class="nav-links">
-      <a href="https://gns-foundation.github.io/ulissy/playground/">Playground</a>
-      <a href="https://datatracker.ietf.org/doc/draft-ayerbe-trip-protocol/">IETF Draft</a>
-      <a href="https://github.com/GNS-Foundation/ulissy/blob/main/docs/whitepaper/WHITEPAPER.md">Whitepaper</a>
-      <a href="https://github.com/GNS-Foundation">GitHub</a>
-      <span class="theme-toggle-wrap">
-        <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
-          <span id="theme-icon">☀</span>
-        </button>
-      </span>
+      <a href="#protocol">Protocol</a>
+      <a href="#extensions">Extensions</a>
+      <a href="#ulissy-lang">ULissy</a>
+      <a href="#live">Live</a>
+      <a href="https://github.com/GNS-Foundation" target="_blank">GitHub</a>
+      <a href="https://www.gcrumbs.com" target="_blank" class="products">Products &#8599;</a>
+      <button class="theme-btn" onclick="toggleTheme()">&#9681;</button>
     </div>
   </div>
 </nav>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-pill">
-    <span class="pulse-dot"></span>
-    IETF Internet-Draft published · Revision -02
+<!-- ════════════════════════════════════════ -->
+<!--                 HERO                    -->
+<!-- ════════════════════════════════════════ -->
+<div class="hero">
+  <div class="hero-equation">Identity &nbsp;=&nbsp; Public Key</div>
+  <h1>The Identity Layer<br>the Internet Never Had</h1>
+  <p class="sub">Decentralized identity through Proof-of-Trajectory. One Ed25519 key for authentication, messaging, and payments. No passwords, no intermediaries, no biometrics.</p>
+  <div class="hero-links">
+    <a href="#protocol" class="btn-primary">Read the Specification</a>
+    <a href="https://github.com/GNS-Foundation" target="_blank" class="btn-ghost">GitHub</a>
+    <a href="https://www.gcrumbs.com" target="_blank" class="btn-ghost">Commercial Products &#8599;</a>
   </div>
-  <h1>
-    The <span class="em">identity layer</span><br>
-    the internet never had
-  </h1>
-  <p class="hero-sub">
-    ULissy is a programming language for moving machines. 
-    The GNS Protocol proves humanity through movement — 
-    not biometrics, not corporations, not CAPTCHAs.
-  </p>
-  <div class="hero-buttons">
-    <a class="btn btn-primary" href="https://gns-foundation.github.io/ulissy/playground/">Try the Playground</a>
-    <a class="btn btn-ghost" href="https://github.com/GNS-Foundation">View on GitHub</a>
-  </div>
-</section>
-
-<!-- AXIOMS -->
-<div class="axioms">
-  <div class="axiom"><strong>Identity</strong> <span>= Public Key</span></div>
-  <div class="axiom"><strong>Proof</strong> <span>= Trajectory</span></div>
-  <div class="axiom"><strong>Trust</strong> <span>= Movement</span></div>
-  <div class="axiom"><strong>Privacy</strong> <span>= Default</span></div>
 </div>
 
-<!-- PROJECTS -->
-<section class="section">
-  <div class="section-label">Ecosystem</div>
-  <h2 class="section-title">What we're building</h2>
-  <div class="project-grid">
-    <a class="project-card" href="https://gns-foundation.github.io/ulissy/playground/">
-      <div class="icon ul">UL</div>
-      <h3>ULissy Language</h3>
-      <div class="badge">v0.4.2 · 74/74 tests passing</div>
-      <p>A domain-specific programming language for moving machines. Identity, location, time, cryptography, and energy as first-class primitives. Transpiles to Rust.</p>
-      <span class="arrow">Open Playground →</span>
-    </a>
-    <a class="project-card" href="https://datatracker.ietf.org/doc/draft-ayerbe-trip-protocol/">
-      <div class="icon tr">TR</div>
-      <h3>TRIP Protocol</h3>
-      <div class="badge">IETF Internet-Draft · revision -02</div>
-      <p>Trajectory-based Identity Proof. Defines how devices collect, sign, and verify location breadcrumbs to prove human presence without biometric hardware.</p>
-      <span class="arrow">IETF Datatracker →</span>
-    </a>
-    <a class="project-card" href="https://github.com/GNS-Foundation/gns-mobile">
-      <div class="icon gn">GN</div>
-      <h3>GNS Browser</h3>
-      <div class="badge">Flutter · Live on Android</div>
-      <p>Mobile app with encrypted messaging, handle-based payments on Stellar, DIX microblogging, and spatial identity discovery. Your identity in your pocket.</p>
-      <span class="arrow">View Source →</span>
-    </a>
+<!-- ════════════════════════════════════════ -->
+<!--            PROTOCOL CORE                -->
+<!-- ════════════════════════════════════════ -->
+<div class="container">
+<section id="protocol">
+  <div class="sec-label">Core Protocol</div>
+  <h2>How GNS Works</h2>
+  <p class="sec-desc">GNS replaces the username/password model with cryptographic identity derived from physical movement in the real world. Three primitives do the work.</p>
+  
+  <div class="spec-grid">
+    <div class="spec-card">
+      <div class="sc-label">PRIMITIVE 01</div>
+      <div class="sc-title">Ed25519 Identity</div>
+      <p class="sc-text">A single elliptic curve keypair serves as your identity, your message signing key, your encryption key (via X25519), and your Stellar wallet address. No accounts to create. You are your key.</p>
+    </div>
+    
+    <div class="spec-card">
+      <div class="sc-label">PRIMITIVE 02</div>
+      <div class="sc-title">Breadcrumb Chains</div>
+      <p class="sc-text">Your device emits cryptographically-signed, H3-quantized location breadcrumbs chained by hash. Each breadcrumb links to the previous, forming an unforgeable trajectory through the physical world.</p>
+    </div>
+    
+    <div class="spec-card">
+      <div class="sc-label">PRIMITIVE 03</div>
+      <div class="sc-title">Trust Scoring</div>
+      <p class="sc-text">The Trajectory Criticality Engine computes trust from three axes: entropy (diversity of locations), regularity (consistent patterns), and span (duration over time). Bots can't fake months of real-world movement.</p>
+    </div>
+  </div>
+  
+  <div class="code-label">Breadcrumb structure</div>
+  <div class="code-block">
+<pre><span class="keyword">type</span> <span class="type">Breadcrumb</span> {
+    index:      <span class="type">Uint64</span>
+    timestamp:  <span class="type">Moment</span>
+    cell:       <span class="type">H3Cell</span>        <span class="comment">// Hexagonal grid, res-9 (~174m)</span>
+    context:    <span class="type">Hash</span>          <span class="comment">// WiFi + cell + IMU digest</span>
+    previous:   <span class="type">Hash</span>          <span class="comment">// Chain link to prior breadcrumb</span>
+    signature:  <span class="type">Signature</span>     <span class="comment">// Ed25519 proof of authorship</span>
+
+    <span class="keyword">invariant</span> signature.valid(<span class="keyword">for</span>: self, <span class="keyword">by</span>: owner)
+    <span class="keyword">invariant</span> cell.reachable(<span class="keyword">from</span>: previous.cell, <span class="keyword">within</span>: timestamp - previous.timestamp)
+}</pre>
+  </div>
+  
+  <div class="spec-grid">
+    <div class="spec-card">
+      <div class="sc-label">RESOLUTION</div>
+      <div class="sc-title">@handle System</div>
+      <p class="sc-text">Human-readable handles (@camilo, @wincom) resolve to Ed25519 public keys. Claiming a handle requires 100+ breadcrumbs and a trust score of 20+ — Proof-of-Trajectory prevents handle squatting.</p>
+    </div>
+    
+    <div class="spec-card">
+      <div class="sc-label">PAYMENT</div>
+      <div class="sc-title">IDUP Layer</div>
+      <p class="sc-text">Because Ed25519 identity keys are simultaneously Stellar wallet addresses, payments are native to the protocol. Send money to @handle. No payment processor, no intermediary fees.</p>
+    </div>
+    
+    <div class="spec-card">
+      <div class="sc-label">PRIVACY</div>
+      <div class="sc-title">H3 Quantization</div>
+      <p class="sc-text">Uber's H3 hexagonal grid converts exact GPS coordinates into ~174m cells. Verifiers learn "this person was in this area" without ever seeing the raw location. Privacy by math, not by policy.</p>
+    </div>
+  </div>
+  
+  <div class="cta-box">
+    <h3>Read the Full Specification</h3>
+    <p>The GNS White Paper v0.3 covers the complete protocol: identity, breadcrumbs, trust scoring, handles, messaging, payments, and organization namespaces.</p>
+    <div class="cta-links">
+      <a href="https://gnamesystem.netlify.app/en/" target="_blank" class="btn-primary">White Paper v0.3 (EN)</a>
+      <a href="https://gnamesystem.netlify.app/it/" target="_blank" class="btn-ghost">Italiano</a>
+      <a href="https://gnamesystem.netlify.app/es/" target="_blank" class="btn-ghost">Espanol</a>
+    </div>
   </div>
 </section>
 
-<!-- CODE PREVIEW -->
-<section class="code-section">
-  <div class="section-label">Language</div>
-  <h2 class="section-title">Code that understands space</h2>
-  <div class="code-container">
-    <div class="code-block">
-      <div class="code-header">
-        <div class="code-dot r"></div>
-        <div class="code-dot y"></div>
-        <div class="code-dot g"></div>
-        <span class="code-filename">breadcrumb.ul</span>
-      </div>
-      <div class="code-body"><span class="cm">// 15 lines of ULissy replaces ~250 lines of Rust</span>
+<!-- ════════════════════════════════════════ -->
+<!--            EXTENSIONS                   -->
+<!-- ════════════════════════════════════════ -->
+<section id="extensions">
+  <div class="sec-label">Protocol Extensions</div>
+  <h2>TrIP — Trajectory Identity Protocol</h2>
+  <p class="sec-desc">TrIP formalizes Proof-of-Trajectory as an IETF Internet-Draft, extending GNS from human identity to devices, satellites, and IoT ecosystems.</p>
+  
+  <div class="ext-grid">
+    <div class="ext-card">
+      <div class="ec-status draft">IETF Draft</div>
+      <div class="ec-title">TrIP Core</div>
+      <div class="ec-ref">draft-ayerbe-rats-trip-02</div>
+      <p class="ec-desc">Trajectory-based Identity Protocol submitted to the IETF RATS (Remote ATtestation procedureS) working group. Defines attestation records, trust computation, and the three-tier architecture for verifying identity through physical behavior.</p>
+      <a href="https://gnamesystem.netlify.app/en/" target="_blank">Read specification &#8594;</a>
+    </div>
+    
+    <div class="ext-card">
+      <div class="ec-status live">Live</div>
+      <div class="ec-title">Orbital TrIP</div>
+      <div class="ec-ref">261 satellites attested</div>
+      <p class="ec-desc">TrIP extended to Low Earth Orbit. 261 satellite identities with trust scores derived from orbital trajectory data. CelesTrak pipeline, insured fleet tracking, three-tier attestation for space objects.</p>
+      <a href="https://orbital-trip-production.up.railway.app/" target="_blank">Live satellite catalog &#8594;</a>
+    </div>
+    
+    <div class="ext-card">
+      <div class="ec-status draft">Extension</div>
+      <div class="ec-title">TrIP-SIoT</div>
+      <div class="ec-ref">Social Internet of Things</div>
+      <p class="ec-desc">Cryptographic social relationships for IoT devices. Proves co-location (CLOR), ownership (OOR), parental (POR), co-work (CWOR), and social (SOR) relationships through breadcrumb chain intersection. Transforms 14 years of SIoT academic theory into deployable protocol.</p>
+      <a href="#">Read extension paper &#8594;</a>
+    </div>
+    
+    <div class="ext-card">
+      <div class="ec-status draft">Provisional</div>
+      <div class="ec-title">Patent #63/948,788</div>
+      <div class="ec-ref">Proof-of-Trajectory Innovation</div>
+      <p class="ec-desc">Provisional patent filed for the Proof-of-Trajectory mechanism — proving identity through cryptographically-signed physical movement rather than biometrics, passwords, or centralized databases.</p>
+      <a href="#">COSS licensing details &#8594;</a>
+    </div>
+  </div>
+</section>
 
-<span class="kw">identity</span> me = <span class="ty">Keychain</span>.primary
+<!-- ════════════════════════════════════════ -->
+<!--           ULISSY LANGUAGE               -->
+<!-- ════════════════════════════════════════ -->
+<section id="ulissy-lang">
+  <div class="sec-label">Domain-Specific Language</div>
+  <div class="lang-header">
+    <h2>ULissy Language</h2>
+    <span class="lang-badge">.ul</span>
+  </div>
+  <p class="sec-desc">A programming language purpose-built for spatial-identity computing. Location is a primitive type, not a library call. Encryption happens automatically. Privacy violations fail at compile time.</p>
+  
+  <div class="code-label">A first ULissy program</div>
+  <div class="code-block">
+<pre><span class="comment">// Collect breadcrumbs to prove humanity</span>
+<span class="keyword">identity</span> me = Keychain.primary
 
-<span class="kw">every</span> <span class="num">10</span>.minutes <span class="kw">when</span> battery > <span class="num">20</span> && gps.available {
-    <span class="kw">let</span> crumb = <span class="fn">breadcrumb</span>(
-        cell: here.<span class="fn">h3</span>(<span class="num">7</span>),
-        context: sensors.digest,
-        previous: me.trajectory.last<span class="op">?.</span>hash <span class="op">??</span> <span class="str">"genesis"</span>
-    ).<span class="fn">signed</span>(me)
-
-    me.trajectory.<span class="fn">append</span>(crumb)
+<span class="keyword">every</span> <span class="number">10</span>.minutes <span class="keyword">when</span> battery > <span class="number">20</span>% {
+    <span class="keyword">let</span> crumb = <span class="keyword">breadcrumb</span>(
+        cell:     here.h3(<span class="number">10</span>),
+        context:  sensors.digest,
+        previous: me.trajectory.last
+    ).signed(me)
+    
+    me.trajectory.append(crumb)
 }
 
-<span class="kw">when</span> me.trajectory.pending >= <span class="num">100</span> {
-    <span class="kw">let</span> epoch = me.trajectory.<span class="fn">bundleEpoch</span>()
-    network.<span class="fn">publish</span>(epoch)
-}</div>
-    </div>
-    <p class="code-caption">Breadcrumb collection with privacy-preserving H3 quantization. No GPS library imports. No crypto boilerplate.</p>
+<span class="keyword">when</span> me.trajectory.count >= <span class="number">100</span> {
+    print(<span class="string">"Ready to claim @handle!"</span>)
+}</pre>
   </div>
-</section>
-
-<!-- HOW IT WORKS -->
-<section class="section">
-  <div class="section-label">Protocol</div>
-  <h2 class="section-title">How Proof-of-Trajectory works</h2>
-  <div class="steps-container">
-    <div class="step">
-      <div class="step-marker">
-        <div class="step-num">1</div>
-        <div class="step-line"></div>
-      </div>
-      <div class="step-body">
-        <h4>Move through the world</h4>
-        <p>Your phone collects location breadcrumbs as you go about your day. No special hardware — any smartphone works.</p>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-marker">
-        <div class="step-num">2</div>
-        <div class="step-line"></div>
-      </div>
-      <div class="step-body">
-        <h4>Privacy-preserving quantization</h4>
-        <p>Raw GPS is never stored or transmitted. Locations are quantized to H3 hexagonal cells (~15,000 m²) — enough to prove movement, not enough to track you.</p>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-marker">
-        <div class="step-num">3</div>
-        <div class="step-line"></div>
-      </div>
-      <div class="step-body">
-        <h4>Sign and chain</h4>
-        <p>Each breadcrumb is signed with your Ed25519 key and hash-linked to the previous one, forming an unforgeable chain of presence.</p>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-marker">
-        <div class="step-num">4</div>
-        <div class="step-line"></div>
-      </div>
-      <div class="step-body">
-        <h4>Bundle into Epochs</h4>
-        <p>100+ breadcrumbs form an Epoch — a verifiable proof that a real human moved through real space over real time.</p>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-marker">
-        <div class="step-num">5</div>
-      </div>
-      <div class="step-body">
-        <h4>Earn trust, claim your @handle</h4>
-        <p>Epochs accumulate into a trust score. At threshold, claim your permanent @handle. No email, no phone number. Just your trajectory.</p>
-      </div>
+  
+  <p>The equivalent in Swift + CoreLocation + CryptoKit would be 200+ lines with manual coordination between frameworks. ULissy collapses the entire GNS protocol into native language constructs.</p>
+  
+  <table class="type-table">
+    <thead>
+      <tr><th>ULissy Type</th><th>Description</th><th>Cryptographic Basis</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="mono">PublicKey</td><td>Ed25519 public key</td><td>32 bytes</td></tr>
+      <tr><td class="mono">Signature</td><td>Ed25519 signature</td><td>64 bytes</td></tr>
+      <tr><td class="mono">H3Cell</td><td>Hexagonal grid cell</td><td>64-bit identifier</td></tr>
+      <tr><td class="mono">Breadcrumb</td><td>Signed location proof</td><td>Chained by SHA-256 hash</td></tr>
+      <tr><td class="mono">Trajectory</td><td>Chain of breadcrumbs</td><td>Append-only Merkle structure</td></tr>
+      <tr><td class="mono">Handle</td><td>@identifier</td><td>Bound to PublicKey via PoT proof</td></tr>
+      <tr><td class="mono">Coordinates</td><td>Raw GPS (internal only)</td><td>Cannot be serialized or transmitted</td></tr>
+    </tbody>
+  </table>
+  
+  <p>The last row is the key innovation: <strong>Coordinates cannot leave the device.</strong> The type system enforces that raw location data never gets serialized, transmitted, or logged. Privacy is a compile-time guarantee, not a runtime hope.</p>
+  
+  <div class="cta-box">
+    <h3>ULissy on GitHub</h3>
+    <p>Lexer, parser, and type checker implemented in Rust. Contributions welcome.</p>
+    <div class="cta-links">
+      <a href="https://github.com/GNS-Foundation/ulissy" target="_blank" class="btn-primary">github.com/GNS-Foundation/ulissy</a>
     </div>
   </div>
 </section>
 
-<!-- ARCHITECTURE -->
-<section class="section arch-section">
-  <div class="section-label">Architecture</div>
-  <h2 class="section-title">Protocol stack</h2>
-  <div class="container">
-    <table class="arch-table">
-      <thead>
-        <tr><th>Layer</th><th>Protocol</th><th>Purpose</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>Identity</td><td>GNS</td><td>@handle naming, Ed25519 keys, facet addressing</td></tr>
-        <tr><td>Proof</td><td>TRIP</td><td>Trajectory collection, epoch bundling, trust scoring</td></tr>
-        <tr><td>Language</td><td>ULissy</td><td>Domain-specific compiler for spatial-identity programs</td></tr>
-        <tr><td>Payments</td><td>IDUP</td><td>Handle-based payments on Stellar (USDC/EURC)</td></tr>
-        <tr><td>Discovery</td><td>TrIP Search</td><td>Spatial-identity search ranked by cryptographic trust</td></tr>
-      </tbody>
-    </table>
+<!-- ════════════════════════════════════════ -->
+<!--            LIVE SYSTEMS                 -->
+<!-- ════════════════════════════════════════ -->
+<section id="live">
+  <div class="sec-label">In Production</div>
+  <h2>Live Systems</h2>
+  <p class="sec-desc">GNS isn't theoretical. These systems are running in production today.</p>
+  
+  <div class="live-grid">
+    <a href="https://orbital-trip-production.up.railway.app/" target="_blank" class="live-card">
+      <div class="lc-stat">261</div>
+      <div class="lc-title">Satellite Identities</div>
+      <div class="lc-desc">Orbital TrIP catalog with trust scores, insured fleet tracking, and CelesTrak pipeline. Three-tier attestation architecture.</div>
+      <div class="lc-link">orbital-trip-production.up.railway.app &#8599;</div>
+    </a>
+    
+    <a href="https://flocking-energy-demo-production.up.railway.app/" target="_blank" class="live-card">
+      <div class="lc-stat" style="color:var(--green)">LIVE</div>
+      <div class="lc-title">Flocking Energy Simulation</div>
+      <div class="lc-desc">Visual demonstration of emergent identity patterns through flocking behavior. Proof-of-Trajectory in action.</div>
+      <div class="lc-link">flocking-energy-demo-production.up.railway.app &#8599;</div>
+    </a>
+    
+    <a href="https://github.com/GNS-Foundation" target="_blank" class="live-card">
+      <div class="lc-stat" style="color:var(--purple)">OSS</div>
+      <div class="lc-title">GNS Browser + Panthera</div>
+      <div class="lc-desc">Flutter mobile app (GNS Browser) and Tauri/React desktop client (Panthera) with full identity, messaging, and payment support.</div>
+      <div class="lc-link">github.com/GNS-Foundation &#8599;</div>
+    </a>
+  </div>
+  
+  <div class="live-grid" style="margin-top:18px">
+    <a href="https://superb-adaptation-production.up.railway.app/" target="_blank" class="live-card">
+      <div class="lc-stat" style="font-size:20px;color:var(--orange)">API</div>
+      <div class="lc-title">GNS Network Backend</div>
+      <div class="lc-desc">Production API on Railway. Identity registration, handle resolution, messaging relay, epoch storage, Supabase integration.</div>
+      <div class="lc-link">Railway + Supabase &#8599;</div>
+    </a>
+    
+    <a href="https://gns-casestudies.netlify.app/en/" target="_blank" class="live-card">
+      <div class="lc-stat" style="font-size:20px;color:var(--green)">7</div>
+      <div class="lc-title">Vertical Case Studies</div>
+      <div class="lc-desc">Authentication, messaging, bot protection, payments, enterprise IAM, satellite, and IoT — with revenue models and TAM analysis.</div>
+      <div class="lc-link">gns-casestudies.netlify.app &#8599;</div>
+    </a>
+    
+    <a href="https://gnamesystem.netlify.app/en/" target="_blank" class="live-card">
+      <div class="lc-stat" style="font-size:20px;color:var(--cyan)">v0.3</div>
+      <div class="lc-title">White Paper (Trilingual)</div>
+      <div class="lc-desc">Complete protocol specification in English, Italian, and Spanish. With Orbital TrIP extension and four-layer architecture.</div>
+      <div class="lc-link">gnamesystem.netlify.app &#8599;</div>
+    </a>
   </div>
 </section>
+</div>
 
-<!-- RESOURCES -->
-<section class="resources">
-  <div class="section-label" style="margin-bottom:20px;">Resources</div>
-  <div class="resource-links">
-    <a href="https://gns-foundation.github.io/ulissy/playground/">Playground</a>
-    <a href="https://github.com/GNS-Foundation/ulissy/blob/main/docs/whitepaper/WHITEPAPER.md">Whitepaper</a>
-    <a href="https://github.com/GNS-Foundation/ulissy/blob/main/docs/GRAMMAR.md">Grammar (93 rules)</a>
-    <a href="https://datatracker.ietf.org/doc/draft-ayerbe-trip-protocol/">IETF Draft</a>
-    <a href="https://github.com/GNS-Foundation">GitHub</a>
-  </div>
-</section>
-
-<!-- FOOTER -->
+<!-- ════════════════════════════════════════ -->
+<!--               FOOTER                    -->
+<!-- ════════════════════════════════════════ -->
 <footer>
-  <div class="motto">"The journey is the proof."</div>
-  <div class="info">
-    ULISSY s.r.l. · Rome, Italy · <a href="mailto:cayerbe@ulissy.app">cayerbe@ulissy.app</a><br>
-    Provisional Patent #63/948,788 · MIT / Apache 2.0 / BSL 1.1
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">
+        <img src="logo.png" alt="GNS">
+        <span>GNS Protocol</span>
+      </div>
+      <div class="footer-tagline">Your keys. Your identity. Your data.<br>The identity layer the internet never had.</div>
+      <div class="footer-legal">GNS Foundation (CH) &middot; ULISSY s.r.l. (IT) &middot; P.IVA 18315191009<br>&copy; 2026 GNS Foundation. Business Source License.</div>
+    </div>
+    
+    <div class="footer-col">
+      <h4>Protocol</h4>
+      <a href="#protocol">Core Specification</a>
+      <a href="https://gnamesystem.netlify.app/en/" target="_blank">White Paper v0.3</a>
+      <a href="#extensions">TrIP Internet-Draft</a>
+      <a href="#ulissy-lang">ULissy Language</a>
+      <a href="#">COSS Licensing</a>
+    </div>
+    
+    <div class="footer-col">
+      <h4>Resources</h4>
+      <a href="https://github.com/GNS-Foundation" target="_blank">GitHub</a>
+      <a href="https://orbital-trip-production.up.railway.app/" target="_blank">Orbital TrIP Catalog</a>
+      <a href="https://flocking-energy-demo-production.up.railway.app/" target="_blank">Flocking Energy Demo</a>
+      <a href="#">API Documentation</a>
+    </div>
+    
+    <div class="footer-col">
+      <h4>Ecosystem</h4>
+      <a href="https://www.gcrumbs.com" target="_blank" class="bridge-link">Commercial Products &#8599;</a>
+      <a href="https://gns-casestudies.netlify.app/en/" target="_blank">Vertical Case Studies</a>
+      <a href="#">Community</a>
+      <a href="#">Contact</a>
+    </div>
   </div>
 </footer>
 
 <script>
-function getTheme() {
-  return localStorage.getItem('theme') || 
-    (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
-}
-
-function applyTheme(t) {
-  document.documentElement.setAttribute('data-theme', t);
-  document.getElementById('theme-icon').textContent = t === 'dark' ? '☀' : '☾';
-  localStorage.setItem('theme', t);
-}
-
 function toggleTheme() {
-  applyTheme(getTheme() === 'dark' ? 'light' : 'dark');
+  const isLight = document.body.classList.toggle('light');
+  try { localStorage.setItem('ulissy-theme', isLight ? 'light' : 'dark'); } catch(e) {}
 }
-
-applyTheme(getTheme());
+try { if (localStorage.getItem('ulissy-theme') === 'light') document.body.classList.add('light'); } catch(e) {}
+document.addEventListener('keydown', function(e) {
+  if ((e.key === 't' || e.key === 'T') && e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') toggleTheme();
+});
 </script>
+
 </body>
 </html>

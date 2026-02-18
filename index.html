@@ -3,66 +3,62 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Globe Crumbs — Fraud-Proof Identity for Every Device, User &amp; Transaction</title>
-<meta name="description" content="GNS Protocol products: trajectory-verified identity for IoT, payments, enterprise IAM, satellite tracking, and bot protection. 100-300x cheaper than traditional KYC.">
-<meta property="og:title" content="Globe Crumbs — Fraud-Proof Identity">
-<meta property="og:description" content="Trajectory-verified identity for IoT, payments, enterprise IAM, satellite tracking, and bot protection.">
-<meta property="og:image" content="https://www.gcrumbs.com/og-image.png">
-<meta property="og:url" content="https://www.gcrumbs.com/">
+<title>GNS Protocol — The Identity Layer the Internet Never Had</title>
+<meta name="description" content="Geospatial Naming System: decentralized identity through Proof-of-Trajectory. Identity = Public Key. No passwords, no intermediaries.">
+<meta property="og:title" content="GNS Protocol — The Identity Layer the Internet Never Had">
+<meta property="og:description" content="Decentralized identity through Proof-of-Trajectory. Ed25519 cryptographic identity, H3 geospatial quantization, zero intermediaries.">
+<meta property="og:image" content="https://www.ulissy.app/og-image.png">
+<meta property="og:url" content="https://www.ulissy.app/">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="logo.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
   --cyan: #0099cc;
-  --cyan2: #00bbee;
-  --cyan-dim: rgba(0,153,204,.08);
+  --cyan-dim: rgba(0,153,204,.1);
   --cyan-border: rgba(0,153,204,.2);
   --green: #00c853;
-  --green-dim: rgba(0,200,83,.08);
   --orange: #ff6d00;
-  --red: #e30613;
   --purple: #7c3aed;
-  --bg: #06090f;
-  --bg2: #0c1219;
-  --bg3: #121a25;
-  --surface: #182030;
-  --border: rgba(255,255,255,.06);
-  --text: #c8d6e5;
-  --text2: #7e91a6;
-  --text3: #4a5d73;
-  --white: #edf2f7;
-  --mono: 'Space Mono', monospace;
-  --sans: 'DM Sans', -apple-system, sans-serif;
+  --bg: #0b0f1a;
+  --bg2: #111827;
+  --bg3: #161d2e;
+  --surface: #1c2536;
+  --border: rgba(255,255,255,.07);
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --text3: #5a6a80;
+  --white: #f1f5f9;
+  --mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
 }
 
 body.light {
-  --bg: #fafbfc;
-  --bg2: #f0f3f7;
-  --bg3: #e6ebf0;
+  --bg: #f8fafc;
+  --bg2: #f1f5f9;
+  --bg3: #e8edf5;
   --surface: #ffffff;
-  --border: rgba(0,0,0,.06);
-  --text: #2d3a4a;
-  --text2: #5a6b7d;
+  --border: rgba(0,0,0,.07);
+  --text: #1e293b;
+  --text2: #475569;
   --text3: #94a3b8;
-  --white: #0f1a2b;
+  --white: #0f172a;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-  font-family: var(--sans);
+  font-family: 'Inter', -apple-system, sans-serif;
   background: var(--bg);
   color: var(--text);
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
 }
 
-body, nav, section, .vert-card, .demo-card, .step-card, footer,
-.theme-btn, .hero, .contact-box, .partner-bar {
+body, nav, .hero, section, .card, .code-block, footer, .nav-inner,
+.theme-btn, .spec-card, .ext-card, .live-card, .cta-box {
   transition: background .4s, color .4s, border-color .4s, box-shadow .4s;
 }
 
@@ -71,19 +67,21 @@ nav {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(6,9,15,.88);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: rgba(11,15,26,.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border);
 }
 
-body.light nav { background: rgba(250,251,252,.9); }
+body.light nav {
+  background: rgba(248,250,252,.88);
+}
 
 .nav-inner {
-  max-width: 1160px;
+  max-width: 1100px;
   margin: 0 auto;
-  padding: 0 28px;
-  height: 60px;
+  padding: 0 24px;
+  height: 56px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -95,67 +93,63 @@ body.light nav { background: rgba(250,251,252,.9); }
   gap: 10px;
   text-decoration: none;
   color: var(--white);
+  font-weight: 700;
+  font-size: 16px;
 }
 
 .nav-brand img {
-  height: 32px;
-  width: 32px;
-  border-radius: 8px;
+  height: 28px;
+  width: 28px;
+  border-radius: 6px;
   object-fit: cover;
 }
 
-.nav-brand span {
-  font-weight: 700;
-  font-size: 17px;
-  letter-spacing: -.3px;
+.nav-brand .proto-tag {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--cyan);
+  background: var(--cyan-dim);
+  padding: 2px 8px;
+  border-radius: 10px;
 }
 
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
 }
 
 .nav-links a {
   color: var(--text2);
   text-decoration: none;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 500;
-  padding: 7px 14px;
+  padding: 6px 12px;
   border-radius: 8px;
   transition: all .2s;
 }
 
-.nav-links a:hover { color: var(--white); background: rgba(255,255,255,.05); }
-body.light .nav-links a:hover { background: rgba(0,0,0,.04); }
+.nav-links a:hover { color: var(--white); background: var(--cyan-dim); }
 
-.nav-links a.protocol-link {
-  font-family: var(--mono);
-  font-size: 12px;
-  color: var(--cyan);
-  border: 1px solid var(--cyan-border);
-  letter-spacing: .5px;
+.nav-links a.products {
+  color: var(--green);
+  border: 1px solid rgba(0,200,83,.2);
 }
 
-.nav-links a.protocol-link:hover { background: var(--cyan-dim); }
-
-.nav-links a.cta-nav {
-  background: var(--cyan);
-  color: #fff;
-  font-weight: 600;
-}
-
-.nav-links a.cta-nav:hover { background: var(--cyan2); }
+.nav-links a.products:hover { background: rgba(0,200,83,.1); }
 
 .theme-btn {
-  background: none;
+  background: var(--surface);
   border: 1px solid var(--border);
-  color: var(--text3);
-  font-size: 14px;
+  color: var(--text2);
+  font-size: 13px;
   padding: 5px 10px;
   border-radius: 8px;
   cursor: pointer;
-  margin-left: 6px;
+  font-family: inherit;
+  margin-left: 8px;
   transition: all .2s;
 }
 
@@ -163,768 +157,475 @@ body.light .nav-links a:hover { background: rgba(0,0,0,.04); }
 
 /* ── HERO ── */
 .hero {
-  padding: 120px 28px 100px;
-  text-align: left;
+  text-align: center;
+  padding: 100px 24px 80px;
   position: relative;
   overflow: hidden;
-  max-width: 1160px;
-  margin: 0 auto;
 }
 
 .hero::before {
   content: '';
   position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse 50% 60% at 50% 0%, rgba(0,153,204,.08) 0%, transparent 70%),
-    radial-gradient(ellipse 30% 50% at 20% 80%, rgba(0,200,83,.04) 0%, transparent 60%),
-    radial-gradient(ellipse 30% 50% at 80% 80%, rgba(124,58,237,.03) 0%, transparent 60%);
+  top: -200px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(circle, rgba(0,153,204,.06) 0%, transparent 70%);
   pointer-events: none;
 }
 
-/* ── CONSTELLATION GRAPH ── */
-.constellation {
-  position: absolute;
-  top: 42%;
-  right: -20px;
-  transform: translateY(-50%);
-  width: 660px;
-  height: 660px;
-  pointer-events: none;
-  z-index: 0;
-  opacity: .65;
-}
-
-body.light .constellation { opacity: .45; }
-
-@media (max-width: 1100px) { .constellation { right: -120px; opacity: .35; } }
-@media (max-width: 768px) { .constellation { display: none; } }
-
-.constellation svg { width: 100%; height: 100%; }
-
-/* Lines */
-.constellation .c-line {
-  stroke-width: 1;
-  opacity: .25;
-  animation: line-fade 8s ease-in-out infinite;
-}
-
-@keyframes line-fade {
-  0%, 100% { opacity: .15; }
-  50% { opacity: .35; }
-}
-
-.c-line.l1 { stroke: #0099cc; animation-delay: 0s; }
-.c-line.l2 { stroke: #ff9800; animation-delay: 1.1s; }
-.c-line.l3 { stroke: #ab47bc; animation-delay: 2.2s; }
-.c-line.l4 { stroke: #00c853; animation-delay: 3.3s; }
-.c-line.l5 { stroke: #42a5f5; animation-delay: 4.4s; }
-.c-line.l6 { stroke: #ef5350; animation-delay: 5.5s; }
-.c-line.l7 { stroke: #26a69a; animation-delay: 6.6s; }
-
-/* Center node */
-.c-center-glow {
-  fill: rgba(0,153,204,.08);
-  animation: center-pulse 4s ease-in-out infinite;
-}
-
-@keyframes center-pulse {
-  0%, 100% { r: 36; opacity: .6; }
-  50% { r: 42; opacity: 1; }
-}
-
-.c-center-ring {
-  fill: none;
-  stroke: var(--cyan);
-  stroke-width: 2;
-  opacity: .5;
-}
-
-.c-center-dot {
-  fill: var(--cyan);
-}
-
-.c-center-text {
-  fill: var(--white);
+.hero-equation {
   font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 2px;
-  text-anchor: middle;
-}
-
-.c-center-sub {
-  fill: var(--cyan);
-  font-family: var(--mono);
-  font-size: 7px;
-  letter-spacing: 3px;
-  text-anchor: middle;
-  opacity: .7;
-}
-
-/* Outer nodes */
-.c-node-ring {
-  fill: none;
-  stroke-width: 2;
-  opacity: .6;
-}
-
-.c-node-icon {
-  font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  text-anchor: middle;
-  dominant-baseline: central;
-  fill: var(--white);
-}
-
-.c-node-label {
-  fill: var(--white);
-  font-family: var(--sans);
-  font-size: 12px;
+  font-size: clamp(20px, 3.5vw, 36px);
   font-weight: 600;
-  text-anchor: middle;
-}
-
-.c-node-sub {
-  fill: var(--text3);
-  font-family: var(--sans);
-  font-size: 8px;
-  text-anchor: middle;
-}
-
-/* Dots scattered */
-.c-dot {
-  fill: rgba(255,255,255,.15);
-  animation: dot-twinkle 6s ease-in-out infinite;
-}
-
-body.light .c-dot { fill: rgba(0,0,0,.08); }
-
-@keyframes dot-twinkle {
-  0%, 100% { opacity: .1; }
-  50% { opacity: .5; }
-}
-
-.hero-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-family: var(--mono);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 2px;
-  text-transform: uppercase;
   color: var(--cyan);
-  background: var(--cyan-dim);
-  border: 1px solid var(--cyan-border);
-  padding: 6px 16px;
-  border-radius: 20px;
-  margin-bottom: 28px;
+  letter-spacing: 2px;
+  margin-bottom: 24px;
   position: relative;
   z-index: 1;
-}
-
-.hero-content {
-  position: relative;
-  z-index: 1;
-}
-
-.hero-badge .dot {
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  background: var(--green);
-  animation: pulse-dot 2s infinite;
-}
-
-@keyframes pulse-dot {
-  0%, 100% { opacity: 1; }
-  50% { opacity: .3; }
 }
 
 .hero h1 {
-  font-size: clamp(40px, 5.5vw, 72px);
+  font-size: clamp(36px, 5vw, 62px);
   font-weight: 800;
-  line-height: 1.04;
-  max-width: 580px;
-  margin: 0 0 22px;
-  color: var(--white);
-  letter-spacing: -1.5px;
+  line-height: 1.08;
+  max-width: 800px;
+  margin: 0 auto 20px;
   position: relative;
   z-index: 1;
+  color: var(--white);
 }
-
-.hero h1 .accent { color: var(--cyan); }
 
 .hero .sub {
-  font-size: 19px;
+  font-size: 18px;
   color: var(--text2);
-  max-width: 520px;
-  margin: 0 0 40px;
-  font-weight: 400;
+  max-width: 640px;
+  margin: 0 auto 40px;
+  font-weight: 300;
   position: relative;
   z-index: 1;
 }
 
-.hero-btns {
+.hero-links {
   display: flex;
-  gap: 14px;
-  justify-content: flex-start;
+  gap: 12px;
+  justify-content: center;
   flex-wrap: wrap;
   position: relative;
   z-index: 1;
 }
 
-.btn {
+.hero-links a {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 13px 28px;
-  border-radius: 12px;
-  font-size: 15px;
+  gap: 6px;
+  padding: 10px 22px;
+  border-radius: 10px;
+  font-size: 14px;
   font-weight: 600;
   text-decoration: none;
-  transition: all .25s;
-  font-family: var(--sans);
+  transition: all .2s;
 }
 
-.btn-fill {
+.btn-primary {
   background: var(--cyan);
   color: #fff;
 }
 
-.btn-fill:hover { background: var(--cyan2); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,153,204,.25); }
+.btn-primary:hover { background: #00aadd; transform: translateY(-1px); }
 
-.btn-outline {
+.btn-ghost {
   background: transparent;
-  color: var(--text);
+  color: var(--text2);
   border: 1px solid var(--border);
 }
 
-.btn-outline:hover { border-color: var(--cyan-border); color: var(--white); }
-
-.hero-stat-row {
-  display: flex;
-  justify-content: flex-start;
-  gap: 48px;
-  margin-top: 56px;
-  position: relative;
-  z-index: 1;
-}
-
-.hero-stat {
-  text-align: center;
-}
-
-.hero-stat .hs-num {
-  font-family: var(--mono);
-  font-size: 28px;
-  font-weight: 700;
-  color: var(--white);
-}
-
-.hero-stat .hs-label {
-  font-size: 12px;
-  color: var(--text3);
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  margin-top: 2px;
-}
+.btn-ghost:hover { color: var(--white); border-color: var(--cyan-border); }
 
 /* ── CONTAINER ── */
-.container { max-width: 1160px; margin: 0 auto; padding: 0 28px; }
+.container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
 
 /* ── SECTIONS ── */
-section { padding: 96px 0; border-top: 1px solid var(--border); }
+section { padding: 80px 0; border-top: 1px solid var(--border); }
 
 .sec-label {
-  font-family: var(--mono);
   font-size: 12px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 3px;
   color: var(--cyan);
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 h2 {
-  font-size: 36px;
-  font-weight: 800;
+  font-size: 32px;
+  font-weight: 700;
   color: var(--white);
   margin-bottom: 12px;
-  letter-spacing: -.5px;
 }
 
 .sec-desc {
-  font-size: 17px;
+  font-size: 16px;
   color: var(--text2);
-  max-width: 600px;
-  margin-bottom: 48px;
-}
-
-/* ── PROBLEM / SOLUTION ── */
-.problem-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
+  max-width: 640px;
   margin-bottom: 40px;
 }
 
-@media (max-width: 768px) { .problem-grid { grid-template-columns: 1fr; } }
-
-.problem-box, .solution-box {
-  border-radius: 16px;
-  padding: 36px;
-  border: 1px solid var(--border);
-}
-
-.problem-box {
-  background: rgba(227,6,19,.04);
-  border-color: rgba(227,6,19,.12);
-}
-
-.solution-box {
-  background: var(--cyan-dim);
-  border-color: var(--cyan-border);
-}
-
-.pb-label {
-  font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  margin-bottom: 14px;
-}
-
-.problem-box .pb-label { color: var(--red); }
-.solution-box .pb-label { color: var(--cyan); }
-
-.pb-title {
-  font-size: 22px;
-  font-weight: 700;
+h3 {
+  font-size: 20px;
+  font-weight: 600;
   color: var(--white);
-  margin-bottom: 10px;
+  margin: 32px 0 10px;
 }
 
-.pb-text {
-  font-size: 15px;
-  color: var(--text2);
-  line-height: 1.7;
-  margin: 0;
-}
+p { font-size: 16px; color: var(--text2); margin-bottom: 14px; }
 
-.pb-items {
-  list-style: none;
-  margin-top: 16px;
-}
-
-.pb-items li {
-  font-size: 14px;
-  color: var(--text2);
-  padding: 6px 0;
-  display: flex;
-  align-items: baseline;
-  gap: 8px;
-}
-
-.pb-items li::before {
-  content: '×';
-  color: var(--red);
-  font-weight: 700;
-  font-size: 16px;
-  flex-shrink: 0;
-}
-
-.solution-box .pb-items li::before {
-  content: '~';
-  color: var(--cyan);
-}
-
-/* ── 7 VERTICALS ── */
-.vert-grid {
+/* ── SPEC CARDS (3-col) ── */
+.spec-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 18px;
 }
 
-@media (max-width: 900px) { .vert-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 560px) { .vert-grid { grid-template-columns: 1fr; } }
+@media (max-width: 768px) { .spec-grid { grid-template-columns: 1fr; } }
 
-.vert-card {
+.spec-card {
   background: var(--bg2);
   border: 1px solid var(--border);
   border-radius: 14px;
   padding: 28px;
-  position: relative;
-  overflow: hidden;
-  transition: transform .2s, border-color .2s;
 }
 
-.vert-card:hover {
-  transform: translateY(-3px);
-  border-color: var(--cyan-border);
-}
+body.light .spec-card { box-shadow: 0 1px 3px rgba(0,0,0,.05); }
 
-body.light .vert-card { background: var(--surface); box-shadow: 0 1px 4px rgba(0,0,0,.04); }
-
-.vert-card .vc-icon {
+.spec-card .sc-label {
   font-family: var(--mono);
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 2px;
-  margin-bottom: 14px;
-  display: inline-block;
-  padding: 5px 12px;
-  border-radius: 8px;
-  background: var(--cyan-dim);
+  font-size: 12px;
+  font-weight: 600;
   color: var(--cyan);
+  margin-bottom: 10px;
+  letter-spacing: 1px;
 }
 
-.vert-card .vc-title {
-  font-size: 17px;
+.spec-card .sc-title {
+  font-size: 18px;
   font-weight: 700;
   color: var(--white);
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
 
-.vert-card .vc-desc {
+.spec-card .sc-text {
   font-size: 14px;
   color: var(--text3);
   line-height: 1.6;
-  margin-bottom: 14px;
+  margin: 0;
 }
 
-.vc-metrics {
-  display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
+/* ── CODE BLOCKS ── */
+.code-block {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px 28px;
+  margin: 24px 0;
+  overflow-x: auto;
 }
 
-.vc-metric {
+.code-block pre {
+  font-family: var(--mono);
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--text);
+  margin: 0;
+}
+
+.code-block .comment { color: var(--text3); }
+.code-block .keyword { color: var(--cyan); }
+.code-block .type { color: var(--purple); }
+.code-block .string { color: var(--green); }
+.code-block .number { color: var(--orange); }
+
+.code-label {
   font-family: var(--mono);
   font-size: 11px;
   color: var(--text3);
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
-.vc-metric strong {
-  color: var(--cyan);
-  font-size: 13px;
+/* ── EXTENSION CARDS (2-col) ── */
+.ext-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
 }
 
-.vert-card .vc-badge {
-  position: absolute;
-  top: 14px;
-  right: 14px;
-  font-size: 9px;
+@media (max-width: 640px) { .ext-grid { grid-template-columns: 1fr; } }
+
+.ext-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+}
+
+body.light .ext-card { box-shadow: 0 1px 3px rgba(0,0,0,.05); }
+
+.ext-card .ec-status {
+  font-size: 10px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1.5px;
   padding: 3px 8px;
-  border-radius: 8px;
+  border-radius: 10px;
+  display: inline-block;
+  width: fit-content;
+  margin-bottom: 12px;
 }
 
-.vc-badge.ready { background: rgba(0,200,83,.12); color: var(--green); }
-.vc-badge.phase2 { background: var(--cyan-dim); color: var(--cyan); }
+.ec-status.live { background: rgba(0,200,83,.12); color: var(--green); }
+.ec-status.draft { background: var(--cyan-dim); color: var(--cyan); }
 
-/* ── SPAN CARD (full width) ── */
-.vert-span {
-  grid-column: 1 / -1;
+.ext-card .ec-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 6px;
+}
+
+.ext-card .ec-ref {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--text3);
+  margin-bottom: 10px;
+}
+
+.ext-card .ec-desc {
+  font-size: 14px;
+  color: var(--text2);
+  line-height: 1.6;
+  margin: 0 0 14px;
+  flex: 1;
+}
+
+.ext-card a {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--cyan);
+  text-decoration: none;
+}
+
+.ext-card a:hover { text-decoration: underline; }
+
+/* ── LIVE SYSTEMS ── */
+.live-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 28px;
-  align-items: center;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
 }
 
-@media (max-width: 768px) { .vert-span { grid-template-columns: 1fr; } }
+@media (max-width: 768px) { .live-grid { grid-template-columns: 1fr; } }
 
-/* ── DEMOS ── */
-.demo-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-}
-
-@media (max-width: 640px) { .demo-grid { grid-template-columns: 1fr; } }
-
-.demo-card {
+.live-card {
   background: var(--bg2);
   border: 1px solid var(--border);
-  border-radius: 16px;
-  overflow: hidden;
+  border-radius: 14px;
+  padding: 28px;
   text-decoration: none;
   display: block;
   transition: transform .2s, border-color .2s;
 }
 
-.demo-card:hover {
-  transform: translateY(-4px);
+.live-card:hover {
+  transform: translateY(-3px);
   border-color: var(--cyan-border);
 }
 
-body.light .demo-card { background: var(--surface); box-shadow: 0 2px 8px rgba(0,0,0,.05); }
+body.light .live-card { box-shadow: 0 1px 3px rgba(0,0,0,.05); }
 
-.demo-card .dc-visual {
-  height: 180px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  overflow: hidden;
-}
-
-.dc-visual.orbital {
-  background: linear-gradient(135deg, #0a1628 0%, #0c2340 100%);
-}
-
-.dc-visual.flocking {
-  background: linear-gradient(135deg, #061210 0%, #0a2420 100%);
-}
-
-.dc-stat {
-  font-family: var(--mono);
-  font-size: 56px;
-  font-weight: 700;
+.live-card .lc-stat {
+  font-size: 36px;
+  font-weight: 800;
   color: var(--cyan);
-  opacity: .3;
-}
-
-.dc-stat.green { color: var(--green); }
-
-.dc-body {
-  padding: 24px;
-}
-
-.dc-label {
-  font-family: var(--mono);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--green);
+  line-height: 1;
   margin-bottom: 6px;
 }
 
-.dc-title {
-  font-size: 18px;
-  font-weight: 700;
-  color: var(--white);
-  margin-bottom: 6px;
-}
-
-.dc-desc {
-  font-size: 14px;
-  color: var(--text3);
-  line-height: 1.6;
-  margin-bottom: 10px;
-}
-
-.dc-link {
-  font-family: var(--mono);
-  font-size: 12px;
-  color: var(--cyan);
-}
-
-/* ── HOW IT WORKS ── */
-.steps-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-  counter-reset: step;
-}
-
-@media (max-width: 768px) { .steps-grid { grid-template-columns: repeat(2, 1fr); } }
-
-.step-card {
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 28px 24px;
-  counter-increment: step;
-  position: relative;
-}
-
-body.light .step-card { background: var(--surface); box-shadow: 0 1px 3px rgba(0,0,0,.04); }
-
-.step-card::before {
-  content: counter(step, decimal-leading-zero);
-  font-family: var(--mono);
-  font-size: 32px;
-  font-weight: 700;
-  color: var(--cyan);
-  opacity: .25;
-  display: block;
-  margin-bottom: 12px;
-}
-
-.step-card .st-title {
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--white);
-  margin-bottom: 6px;
-}
-
-.step-card .st-desc {
-  font-size: 13px;
-  color: var(--text3);
-  line-height: 1.6;
-}
-
-/* ── PARTNER BAR ── */
-.partner-bar {
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 36px 40px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 32px;
-  flex-wrap: wrap;
-  margin-top: 48px;
-}
-
-body.light .partner-bar { background: var(--surface); box-shadow: 0 1px 4px rgba(0,0,0,.04); }
-
-.partner-info h3 {
-  font-size: 18px;
-  font-weight: 700;
+.live-card .lc-title {
+  font-size: 15px;
+  font-weight: 600;
   color: var(--white);
   margin-bottom: 4px;
 }
 
-.partner-info p {
-  font-size: 14px;
+.live-card .lc-desc {
+  font-size: 13px;
   color: var(--text3);
-  margin: 0;
+  line-height: 1.5;
 }
 
-.partner-logos {
+.live-card .lc-link {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--cyan);
+  margin-top: 10px;
+  display: block;
+  opacity: .7;
+}
+
+/* ── ULISSY LANGUAGE SECTION ── */
+.lang-header {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 16px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
 }
 
-.partner-logos img {
-  height: 44px;
-  width: 44px;
-  border-radius: 10px;
-  object-fit: cover;
+.lang-header h2 { margin: 0; }
+
+.lang-badge {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 8px;
+  background: rgba(124,58,237,.12);
+  color: var(--purple);
+  letter-spacing: 1px;
 }
 
-.partner-logos .partner-x {
+.type-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  margin: 24px 0;
+  font-size: 14px;
+}
+
+.type-table thead th {
+  background: var(--bg3);
+  padding: 12px 18px;
+  text-align: left;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
   color: var(--text3);
-  font-size: 18px;
+  border-bottom: 1px solid var(--border);
 }
 
-/* ── CONTACT BOX ── */
-.contact-box {
+.type-table td {
+  padding: 10px 18px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text2);
+}
+
+.type-table tr:last-child td { border-bottom: none; }
+
+.type-table .mono {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--cyan);
+}
+
+/* ── CTA BOX ── */
+.cta-box {
   text-align: center;
-  padding: 64px 40px;
+  padding: 48px 32px;
   background: var(--bg2);
   border: 1px solid var(--border);
-  border-radius: 20px;
-  margin: 48px 0;
-  position: relative;
-  overflow: hidden;
+  border-radius: 16px;
+  margin: 40px 0;
 }
 
-.contact-box::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse 60% 80% at 50% 100%, rgba(0,153,204,.06) 0%, transparent 60%);
-  pointer-events: none;
+.cta-box h3 {
+  font-size: 24px;
+  margin: 0 0 8px;
 }
 
-body.light .contact-box { background: var(--surface); box-shadow: 0 2px 8px rgba(0,0,0,.04); }
-
-.contact-box h2 {
-  font-size: 32px;
-  margin-bottom: 10px;
-  position: relative;
-  z-index: 1;
+.cta-box p {
+  color: var(--text3);
+  max-width: 500px;
+  margin: 0 auto 24px;
+  font-size: 15px;
 }
 
-.contact-box .cd-desc {
-  font-size: 16px;
-  color: var(--text2);
-  max-width: 480px;
-  margin: 0 auto 28px;
-  position: relative;
-  z-index: 1;
+.cta-links {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
-.contact-box .cd-email {
-  font-family: var(--mono);
-  font-size: 18px;
-  color: var(--cyan);
+.cta-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 22px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
   text-decoration: none;
-  padding: 14px 36px;
-  border: 2px solid var(--cyan);
-  border-radius: 14px;
-  display: inline-block;
-  transition: all .25s;
-  position: relative;
-  z-index: 1;
-}
-
-.contact-box .cd-email:hover {
-  background: var(--cyan);
-  color: #fff;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0,153,204,.2);
+  transition: all .2s;
 }
 
 /* ── FOOTER ── */
 footer {
   border-top: 1px solid var(--border);
-  padding: 56px 28px;
+  padding: 48px 24px;
 }
 
 .footer-inner {
-  max-width: 1160px;
+  max-width: 1100px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 2.5fr 1fr 1fr 1fr;
-  gap: 44px;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 40px;
 }
 
-@media (max-width: 768px) { .footer-inner { grid-template-columns: 1fr 1fr; gap: 28px; } }
+@media (max-width: 768px) {
+  .footer-inner { grid-template-columns: 1fr 1fr; gap: 28px; }
+}
 
 .footer-brand {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 14px;
+  gap: 8px;
+  margin-bottom: 12px;
 }
 
 .footer-brand img {
-  height: 28px;
-  width: 28px;
-  border-radius: 7px;
+  height: 24px;
+  width: 24px;
+  border-radius: 5px;
   object-fit: cover;
 }
 
 .footer-brand span {
   font-weight: 700;
-  font-size: 16px;
+  font-size: 15px;
   color: var(--white);
 }
 
 .footer-tagline {
-  font-size: 14px;
+  font-size: 13px;
   color: var(--text3);
-  margin-bottom: 18px;
+  margin-bottom: 16px;
   line-height: 1.6;
 }
 
 .footer-legal {
   font-size: 11px;
   color: var(--text3);
-  opacity: .5;
-  line-height: 1.8;
+  opacity: .6;
 }
 
 .footer-col h4 {
@@ -933,7 +634,7 @@ footer {
   text-transform: uppercase;
   letter-spacing: 2px;
   color: var(--text3);
-  margin-bottom: 16px;
+  margin-bottom: 14px;
 }
 
 .footer-col a {
@@ -941,19 +642,14 @@ footer {
   font-size: 14px;
   color: var(--text2);
   text-decoration: none;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   transition: color .2s;
 }
 
 .footer-col a:hover { color: var(--cyan); }
 
-.footer-col a.proto-link {
-  font-family: var(--mono);
-  font-size: 13px;
-  color: var(--cyan);
-}
-
-.footer-col a.proto-link:hover { color: var(--cyan2); }
+.footer-col a.bridge-link { color: var(--green); }
+.footer-col a.bridge-link:hover { color: #00e065; }
 
 /* ── HAMBURGER ── */
 .hamburger {
@@ -982,7 +678,7 @@ footer {
 .mobile-menu {
   display: none;
   position: fixed;
-  top: 60px;
+  top: 56px;
   left: 0;
   right: 0;
   bottom: 0;
@@ -1010,64 +706,39 @@ body.light .mobile-menu { background: var(--bg); }
 
 .mobile-menu a:hover { color: var(--cyan); }
 
-.mobile-menu a.protocol-link {
-  font-family: var(--mono);
-  color: var(--cyan);
-  font-size: 14px;
-  letter-spacing: .5px;
+.mobile-menu a.products {
+  color: var(--green);
   margin-top: 8px;
-}
-
-.mobile-menu a.cta-mobile {
-  background: var(--cyan);
-  color: #fff;
-  text-align: center;
-  border-radius: 12px;
-  padding: 14px;
-  margin-top: 12px;
-  border: none;
   font-weight: 600;
 }
 
-/* ── MOBILE ── */
+/* ── MOBILE NAV ── */
 @media (max-width: 768px) {
   .hamburger { display: flex; }
   .nav-links { display: none; }
-  .hero { padding: 80px 20px 64px; }
-  .hero h1 { font-size: 36px; }
-  .hero-stat-row { gap: 20px; flex-wrap: wrap; }
-  .hero-stat-row .hero-stat { min-width: 40%; }
-  .steps-grid { grid-template-columns: 1fr; }
-}
-
-@media (max-width: 640px) {
-  .hero { padding: 72px 20px 56px; }
-  .hero h1 { font-size: 32px; }
-  .hero .sub { font-size: 16px; }
-  .btn { padding: 12px 22px; font-size: 14px; }
-  .hero-stat .hs-num { font-size: 22px; }
-  .hero-stat .hs-label { font-size: 10px; }
-  h2 { font-size: 28px; }
-  .sec-desc { font-size: 15px; }
+  .hero { padding: 72px 24px 60px; }
 }
 </style>
 </head>
 <body>
 
-<!-- ════════════ NAV ════════════ -->
+<!-- ════════════════════════════════════════ -->
+<!--                  NAV                    -->
+<!-- ════════════════════════════════════════ -->
 <nav>
   <div class="nav-inner">
     <a href="/" class="nav-brand">
       <img src="logo.png" alt="GNS">
-      <span>Globe Crumbs</span>
+      GNS Protocol
+      <span class="proto-tag">Open</span>
     </a>
     <div class="nav-links">
-      <a href="#verticals">Verticals</a>
-      <a href="#demos">Demos</a>
-      <a href="#how">How It Works</a>
-      <a href="#contact">Contact</a>
-      <a href="https://www.ulissy.app" target="_blank" class="protocol-link">Protocol &#8599;</a>
-      <a href="mailto:cayerbe@ulissy.app" class="cta-nav">Get in Touch</a>
+      <a href="#protocol">Protocol</a>
+      <a href="#extensions">Extensions</a>
+      <a href="#ulissy-lang">ULissy</a>
+      <a href="#live">Live</a>
+      <a href="https://github.com/GNS-Foundation" target="_blank">GitHub</a>
+      <a href="https://www.gcrumbs.com" target="_blank" class="products">Products &#8599;</a>
       <button class="theme-btn" onclick="toggleTheme()">&#9681;</button>
     </div>
     <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
@@ -1077,357 +748,278 @@ body.light .mobile-menu { background: var(--bg); }
 </nav>
 
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#verticals" onclick="closeMenu()">Verticals</a>
-  <a href="#demos" onclick="closeMenu()">Demos</a>
-  <a href="#how" onclick="closeMenu()">How It Works</a>
-  <a href="#contact" onclick="closeMenu()">Contact</a>
-  <a href="https://www.ulissy.app" target="_blank" class="protocol-link">Protocol &#8599;</a>
-  <a href="mailto:cayerbe@ulissy.app" class="cta-mobile">Get in Touch</a>
+  <a href="#protocol" onclick="closeMenu()">Protocol</a>
+  <a href="#extensions" onclick="closeMenu()">Extensions</a>
+  <a href="#ulissy-lang" onclick="closeMenu()">ULissy Language</a>
+  <a href="#live" onclick="closeMenu()">Live Systems</a>
+  <a href="https://github.com/GNS-Foundation" target="_blank">GitHub</a>
+  <a href="https://www.gcrumbs.com" target="_blank" class="products">Commercial Products &#8599;</a>
 </div>
 
-<!-- ════════════ HERO ════════════ -->
+<!-- ════════════════════════════════════════ -->
+<!--                 HERO                    -->
+<!-- ════════════════════════════════════════ -->
 <div class="hero">
-  <!-- Constellation Graph -->
-  <div class="constellation">
-    <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
-      <!-- Scattered background dots -->
-      <circle class="c-dot" cx="60" cy="90" r="1.5" style="animation-delay:0s"/>
-      <circle class="c-dot" cx="440" cy="60" r="1" style="animation-delay:1s"/>
-      <circle class="c-dot" cx="120" cy="420" r="1.5" style="animation-delay:2s"/>
-      <circle class="c-dot" cx="400" cy="440" r="1" style="animation-delay:3s"/>
-      <circle class="c-dot" cx="70" cy="270" r="1" style="animation-delay:4s"/>
-      <circle class="c-dot" cx="430" cy="240" r="1.5" style="animation-delay:5s"/>
-      <circle class="c-dot" cx="250" cy="45" r="1" style="animation-delay:1.5s"/>
-      <circle class="c-dot" cx="280" cy="460" r="1" style="animation-delay:2.5s"/>
-      <circle class="c-dot" cx="460" cy="380" r="1" style="animation-delay:3.5s"/>
-      <circle class="c-dot" cx="40" cy="360" r="1.5" style="animation-delay:4.5s"/>
-
-      <!-- Lines from center (250,250) to each node -->
-      <line class="c-line l1" x1="250" y1="250" x2="250" y2="80"/>
-      <line class="c-line l2" x1="250" y1="250" x2="410" y2="130"/>
-      <line class="c-line l3" x1="250" y1="250" x2="445" y2="250"/>
-      <line class="c-line l4" x1="250" y1="250" x2="410" y2="370"/>
-      <line class="c-line l5" x1="250" y1="250" x2="250" y2="420"/>
-      <line class="c-line l6" x1="250" y1="250" x2="90" y2="370"/>
-      <line class="c-line l7" x1="250" y1="250" x2="90" y2="130"/>
-
-      <!-- Cross-lines between adjacent nodes -->
-      <line class="c-line l1" x1="250" y1="80" x2="410" y2="130" style="opacity:.08"/>
-      <line class="c-line l3" x1="445" y1="250" x2="410" y2="370" style="opacity:.08"/>
-      <line class="c-line l5" x1="250" y1="420" x2="90" y2="370" style="opacity:.08"/>
-      <line class="c-line l7" x1="90" y1="130" x2="250" y2="80" style="opacity:.08"/>
-      <line class="c-line l2" x1="410" y1="130" x2="445" y2="250" style="opacity:.06"/>
-      <line class="c-line l6" x1="90" y1="370" x2="90" y2="130" style="opacity:.06"/>
-
-      <!-- Center: GNS node -->
-      <circle class="c-center-glow" cx="250" cy="250" r="38"/>
-      <circle class="c-center-ring" cx="250" cy="250" r="30"/>
-      <circle class="c-center-dot" cx="250" cy="250" r="18"/>
-      <text class="c-center-text" x="250" y="248">GNS</text>
-      <text class="c-center-sub" x="250" y="262">PROTOCOL</text>
-
-      <!-- Node 1: Authentication (top center) -->
-      <circle class="c-node-ring" cx="250" cy="80" r="30" stroke="#0099cc"/>
-      <text class="c-node-icon" x="250" y="81">AUTH</text>
-      <text class="c-node-label" x="250" y="120">Authentication</text>
-
-      <!-- Node 2: Bot Protection (top right) -->
-      <circle class="c-node-ring" cx="410" cy="130" r="30" stroke="#ff9800"/>
-      <text class="c-node-icon" x="410" y="131">BOT</text>
-      <text class="c-node-label" x="410" y="170">Bot Protection</text>
-
-      <!-- Node 3: Messaging (right) -->
-      <circle class="c-node-ring" cx="445" cy="250" r="30" stroke="#ab47bc"/>
-      <text class="c-node-icon" x="445" y="251">MSG</text>
-      <text class="c-node-label" x="445" y="290">Messaging</text>
-
-      <!-- Node 4: Payments (bottom right) -->
-      <circle class="c-node-ring" cx="410" cy="370" r="30" stroke="#00c853"/>
-      <text class="c-node-icon" x="410" y="371">PAY</text>
-      <text class="c-node-label" x="410" y="410">Payments</text>
-
-      <!-- Node 5: Satellite (bottom center) -->
-      <circle class="c-node-ring" cx="250" cy="420" r="30" stroke="#42a5f5"/>
-      <text class="c-node-icon" x="250" y="421">SAT</text>
-      <text class="c-node-label" x="250" y="460">Satellite</text>
-
-      <!-- Node 6: IoT / M2M (bottom left) -->
-      <circle class="c-node-ring" cx="90" cy="370" r="30" stroke="#ef5350"/>
-      <text class="c-node-icon" x="90" y="371">IoT</text>
-      <text class="c-node-label" x="90" y="410">IoT / M2M</text>
-
-      <!-- Node 7: Enterprise IAM (top left) -->
-      <circle class="c-node-ring" cx="90" cy="130" r="30" stroke="#26a69a"/>
-      <text class="c-node-icon" x="90" y="131">IAM</text>
-      <text class="c-node-label" x="90" y="170">Enterprise IAM</text>
-    </svg>
-  </div>
-  <div class="hero-badge"><span class="dot"></span> Built on GNS Protocol</div>
-  <h1>Identity that <span class="accent">moves</span> with you.</h1>
-  <p class="sub">Trajectory-verified identity for devices, users, and transactions. Proving who's real through how they move — not passwords, not biometrics.</p>
-  <div class="hero-btns">
-    <a href="#verticals" class="btn btn-fill">Explore Use Cases</a>
-    <a href="#demos" class="btn btn-outline">See Live Demos</a>
-  </div>
-  <div class="hero-stat-row">
-    <div class="hero-stat">
-      <div class="hs-num">45K+</div>
-      <div class="hs-label">Satellites Tracked</div>
-    </div>
-    <div class="hero-stat">
-      <div class="hs-num">7</div>
-      <div class="hs-label">Market Verticals</div>
-    </div>
-    <div class="hero-stat">
-      <div class="hs-num">100-300x</div>
-      <div class="hs-label">Cheaper than KYC</div>
-    </div>
-    <div class="hero-stat">
-      <div class="hs-num">0</div>
-      <div class="hs-label">Passwords Required</div>
-    </div>
+  <div class="hero-equation">Identity &nbsp;=&nbsp; Public Key</div>
+  <h1>The Identity Layer<br>the Internet Never Had</h1>
+  <p class="sub">Decentralized identity through Proof-of-Trajectory. One Ed25519 key for authentication, messaging, and payments. No passwords, no intermediaries, no biometrics.</p>
+  <div class="hero-links">
+    <a href="#protocol" class="btn-primary">Read the Specification</a>
+    <a href="https://github.com/GNS-Foundation" target="_blank" class="btn-ghost">GitHub</a>
+    <a href="https://www.gcrumbs.com" target="_blank" class="btn-ghost">Commercial Products &#8599;</a>
   </div>
 </div>
 
-<!-- ════════════ PROBLEM / SOLUTION ════════════ -->
+<!-- ════════════════════════════════════════ -->
+<!--            PROTOCOL CORE                -->
+<!-- ════════════════════════════════════════ -->
 <div class="container">
-<section>
-  <div class="sec-label">The Problem</div>
-  <h2>Identity on the internet is broken.</h2>
+<section id="protocol">
+  <div class="sec-label">Core Protocol</div>
+  <h2>How GNS Works</h2>
+  <p class="sec-desc">GNS replaces the username/password model with cryptographic identity derived from physical movement in the real world. Three primitives do the work.</p>
   
-  <div class="problem-grid">
-    <div class="problem-box">
-      <div class="pb-label">Today's Reality</div>
-      <div class="pb-title">$56B lost to identity fraud annually</div>
-      <p class="pb-text">Every system online verifies accounts, not humans. Bots create millions of fake accounts. Passwords get stolen. KYC costs $5-30 per verification. And after all that — you still can't prove who's behind the screen.</p>
-      <ul class="pb-items">
-        <li>Passwords stolen in 81% of breaches</li>
-        <li>KYC takes 3-5 days and costs $5-30 per user</li>
-        <li>Biometrics require special hardware</li>
-        <li>Bots pass CAPTCHA 98.9% of the time</li>
-      </ul>
+  <div class="spec-grid">
+    <div class="spec-card">
+      <div class="sc-label">PRIMITIVE 01</div>
+      <div class="sc-title">Ed25519 Identity</div>
+      <p class="sc-text">A single elliptic curve keypair serves as your identity, your message signing key, your encryption key (via X25519), and your Stellar wallet address. No accounts to create. You are your key.</p>
     </div>
     
-    <div class="solution-box">
-      <div class="pb-label">GNS Approach</div>
-      <div class="pb-title">Prove identity through movement</div>
-      <p class="pb-text">A bot can fake a password. It can solve a CAPTCHA. It can even generate a face. But it cannot fake months of real-world physical movement across diverse locations with consistent human patterns.</p>
-      <ul class="pb-items">
-        <li>One Ed25519 key = identity + wallet + encryption</li>
-        <li>Verification in milliseconds, costs fractions of a cent</li>
-        <li>Works on any smartphone, no special hardware</li>
-        <li>Privacy by math: H3 cells, not raw GPS</li>
-      </ul>
+    <div class="spec-card">
+      <div class="sc-label">PRIMITIVE 02</div>
+      <div class="sc-title">Breadcrumb Chains</div>
+      <p class="sc-text">Your device emits cryptographically-signed, H3-quantized location breadcrumbs chained by hash. Each breadcrumb links to the previous, forming an unforgeable trajectory through the physical world.</p>
+    </div>
+    
+    <div class="spec-card">
+      <div class="sc-label">PRIMITIVE 03</div>
+      <div class="sc-title">Trust Scoring</div>
+      <p class="sc-text">The Trajectory Criticality Engine computes trust from three axes: entropy (diversity of locations), regularity (consistent patterns), and span (duration over time). Bots can't fake months of real-world movement.</p>
+    </div>
+  </div>
+  
+  <div class="code-label">Breadcrumb structure</div>
+  <div class="code-block">
+<pre><span class="keyword">type</span> <span class="type">Breadcrumb</span> {
+    index:      <span class="type">Uint64</span>
+    timestamp:  <span class="type">Moment</span>
+    cell:       <span class="type">H3Cell</span>        <span class="comment">// Hexagonal grid, res-9 (~174m)</span>
+    context:    <span class="type">Hash</span>          <span class="comment">// WiFi + cell + IMU digest</span>
+    previous:   <span class="type">Hash</span>          <span class="comment">// Chain link to prior breadcrumb</span>
+    signature:  <span class="type">Signature</span>     <span class="comment">// Ed25519 proof of authorship</span>
+
+    <span class="keyword">invariant</span> signature.valid(<span class="keyword">for</span>: self, <span class="keyword">by</span>: owner)
+    <span class="keyword">invariant</span> cell.reachable(<span class="keyword">from</span>: previous.cell, <span class="keyword">within</span>: timestamp - previous.timestamp)
+}</pre>
+  </div>
+  
+  <div class="spec-grid">
+    <div class="spec-card">
+      <div class="sc-label">RESOLUTION</div>
+      <div class="sc-title">@handle System</div>
+      <p class="sc-text">Human-readable handles (@camilo, @wincom) resolve to Ed25519 public keys. Claiming a handle requires 100+ breadcrumbs and a trust score of 20+ — Proof-of-Trajectory prevents handle squatting.</p>
+    </div>
+    
+    <div class="spec-card">
+      <div class="sc-label">PAYMENT</div>
+      <div class="sc-title">IDUP Layer</div>
+      <p class="sc-text">Because Ed25519 identity keys are simultaneously Stellar wallet addresses, payments are native to the protocol. Send money to @handle. No payment processor, no intermediary fees.</p>
+    </div>
+    
+    <div class="spec-card">
+      <div class="sc-label">PRIVACY</div>
+      <div class="sc-title">H3 Quantization</div>
+      <p class="sc-text">Uber's H3 hexagonal grid converts exact GPS coordinates into ~174m cells. Verifiers learn "this person was in this area" without ever seeing the raw location. Privacy by math, not by policy.</p>
+    </div>
+  </div>
+  
+  <div class="cta-box">
+    <h3>Read the Full Specification</h3>
+    <p>The GNS White Paper v0.3 covers the complete protocol: identity, breadcrumbs, trust scoring, handles, messaging, payments, and organization namespaces.</p>
+    <div class="cta-links">
+      <a href="https://gnamesystem.netlify.app/en/" target="_blank" class="btn-primary">White Paper v0.3 (EN)</a>
+      <a href="https://gnamesystem.netlify.app/it/" target="_blank" class="btn-ghost">Italiano</a>
+      <a href="https://gnamesystem.netlify.app/es/" target="_blank" class="btn-ghost">Espanol</a>
     </div>
   </div>
 </section>
 
-<!-- ════════════ 7 VERTICALS ════════════ -->
-<section id="verticals">
-  <div class="sec-label">Market Verticals</div>
-  <h2>Seven ways to deploy trajectory identity.</h2>
-  <p class="sec-desc">Each vertical is a standalone product opportunity built on the same GNS protocol infrastructure.</p>
+<!-- ════════════════════════════════════════ -->
+<!--            EXTENSIONS                   -->
+<!-- ════════════════════════════════════════ -->
+<section id="extensions">
+  <div class="sec-label">Protocol Extensions</div>
+  <h2>TrIP — Trajectory Identity Protocol</h2>
+  <p class="sec-desc">TrIP formalizes Proof-of-Trajectory as an IETF Internet-Draft, extending GNS from human identity to devices, satellites, and IoT ecosystems.</p>
   
-  <div class="vert-grid">
-    <div class="vert-card">
-      <span class="vc-badge ready">Ready</span>
-      <div class="vc-icon">AUTH</div>
-      <div class="vc-title">Authentication</div>
-      <div class="vc-desc">Replace passwords with trajectory-based login. Prove you're the same human who created the account — without remembering anything.</div>
-      <div class="vc-metrics">
-        <div class="vc-metric"><strong>$28B</strong> TAM</div>
-        <div class="vc-metric"><strong>100x</strong> cheaper</div>
-      </div>
+  <div class="ext-grid">
+    <div class="ext-card">
+      <div class="ec-status draft">IETF Draft</div>
+      <div class="ec-title">TrIP Core</div>
+      <div class="ec-ref">draft-ayerbe-rats-trip-02</div>
+      <p class="ec-desc">Trajectory-based Identity Protocol submitted to the IETF RATS (Remote ATtestation procedureS) working group. Defines attestation records, trust computation, and the three-tier architecture for verifying identity through physical behavior.</p>
+      <a href="https://gnamesystem.netlify.app/en/" target="_blank">Read specification &#8594;</a>
     </div>
     
-    <div class="vert-card">
-      <span class="vc-badge ready">Ready</span>
-      <div class="vc-icon">MSG</div>
-      <div class="vc-title">Encrypted Messaging</div>
-      <div class="vc-desc">End-to-end encrypted messaging where your identity IS your encryption key. No phone number, no email, no account creation.</div>
-      <div class="vc-metrics">
-        <div class="vc-metric"><strong>$10B</strong> TAM</div>
-        <div class="vc-metric"><strong>E2EE</strong> native</div>
-      </div>
+    <div class="ext-card">
+      <div class="ec-status live">Live</div>
+      <div class="ec-title">Orbital TrIP</div>
+      <div class="ec-ref">45,000+ satellites trackable</div>
+      <p class="ec-desc">TrIP extended to Low Earth Orbit. 45,000+ satellite identities with trust scores derived from orbital trajectory data. CelesTrak pipeline, insured fleet tracking, three-tier attestation for space objects.</p>
+      <a href="https://orbital-trip-production.up.railway.app/" target="_blank">Live satellite catalog &#8594;</a>
     </div>
     
-    <div class="vert-card">
-      <span class="vc-badge ready">Ready</span>
-      <div class="vc-icon">BOT</div>
-      <div class="vc-title">Bot Protection</div>
-      <div class="vc-desc">Cloudflare-style protection powered by Proof-of-Trajectory instead of CAPTCHA. Bots can't fake months of human movement patterns.</div>
-      <div class="vc-metrics">
-        <div class="vc-metric"><strong>$4.5B</strong> TAM</div>
-        <div class="vc-metric"><strong>98.9%</strong> CAPTCHA fail rate</div>
-      </div>
+    <div class="ext-card">
+      <div class="ec-status draft">Extension</div>
+      <div class="ec-title">TrIP-SIoT</div>
+      <div class="ec-ref">Social Internet of Things</div>
+      <p class="ec-desc">Cryptographic social relationships for IoT devices. Proves co-location (CLOR), ownership (OOR), parental (POR), co-work (CWOR), and social (SOR) relationships through breadcrumb chain intersection. Transforms 14 years of SIoT academic theory into deployable protocol.</p>
+      <a href="#">Read extension paper &#8594;</a>
     </div>
     
-    <div class="vert-card">
-      <span class="vc-badge phase2">Phase 2</span>
-      <div class="vc-icon">PAY</div>
-      <div class="vc-title">Payments</div>
-      <div class="vc-desc">Send money to @handle. Identity keys double as Stellar wallet addresses. IDUP layer enables NFC tap-to-pay with cryptographic identity.</div>
-      <div class="vc-metrics">
-        <div class="vc-metric"><strong>$100B+</strong> TAM</div>
-        <div class="vc-metric"><strong>USDC/EURC</strong> rails</div>
-      </div>
-    </div>
-    
-    <div class="vert-card">
-      <span class="vc-badge phase2">Phase 2</span>
-      <div class="vc-icon">IAM</div>
-      <div class="vc-title">Enterprise IAM</div>
-      <div class="vc-desc">Trajectory-based multi-factor authentication for sensitive data access. Prove the employee is physically in the office before granting access.</div>
-      <div class="vc-metrics">
-        <div class="vc-metric"><strong>$19B</strong> TAM</div>
-        <div class="vc-metric"><strong>NIS2</strong> compliant</div>
-      </div>
-    </div>
-    
-    <div class="vert-card">
-      <span class="vc-badge ready">Live</span>
-      <div class="vc-icon">SAT</div>
-      <div class="vc-title">Satellite Tracking</div>
-      <div class="vc-desc">Orbital TrIP: trust-scored satellite identities from CelesTrak trajectory data. 45,000+ objects trackable via CelesTrak. Insured fleet tracking.</div>
-      <div class="vc-metrics">
-        <div class="vc-metric"><strong>45K+</strong> trackable</div>
-        <div class="vc-metric"><strong>$1.2B</strong> TAM</div>
-      </div>
-    </div>
-    
-    <div class="vert-card">
-      <span class="vc-badge phase2">Phase 2</span>
-      <div class="vc-icon">IoT</div>
-      <div class="vc-title">IoT &amp; M2M</div>
-      <div class="vc-desc">Cryptographic identity for machines. TrustSIM with GNS identity baked in. Social Internet of Things (SIoT) device relationships through breadcrumb chain intersection.</div>
-      <div class="vc-metrics">
-        <div class="vc-metric"><strong>$12B</strong> TAM</div>
-        <div class="vc-metric"><strong>SIoT</strong> extension</div>
-      </div>
+    <div class="ext-card">
+      <div class="ec-status draft">Provisional</div>
+      <div class="ec-title">Patent #63/948,788</div>
+      <div class="ec-ref">Proof-of-Trajectory Innovation</div>
+      <p class="ec-desc">Provisional patent filed for the Proof-of-Trajectory mechanism — proving identity through cryptographically-signed physical movement rather than biometrics, passwords, or centralized databases.</p>
+      <a href="#">COSS licensing details &#8594;</a>
     </div>
   </div>
 </section>
 
-<!-- ════════════ LIVE DEMOS ════════════ -->
-<section id="demos">
+<!-- ════════════════════════════════════════ -->
+<!--           ULISSY LANGUAGE               -->
+<!-- ════════════════════════════════════════ -->
+<section id="ulissy-lang">
+  <div class="sec-label">Domain-Specific Language</div>
+  <div class="lang-header">
+    <h2>ULissy Language</h2>
+    <span class="lang-badge">.ul</span>
+  </div>
+  <p class="sec-desc">A programming language purpose-built for spatial-identity computing. Location is a primitive type, not a library call. Encryption happens automatically. Privacy violations fail at compile time.</p>
+  
+  <div class="code-label">A first ULissy program</div>
+  <div class="code-block">
+<pre><span class="comment">// Collect breadcrumbs to prove humanity</span>
+<span class="keyword">identity</span> me = Keychain.primary
+
+<span class="keyword">every</span> <span class="number">10</span>.minutes <span class="keyword">when</span> battery > <span class="number">20</span>% {
+    <span class="keyword">let</span> crumb = <span class="keyword">breadcrumb</span>(
+        cell:     here.h3(<span class="number">10</span>),
+        context:  sensors.digest,
+        previous: me.trajectory.last
+    ).signed(me)
+    
+    me.trajectory.append(crumb)
+}
+
+<span class="keyword">when</span> me.trajectory.count >= <span class="number">100</span> {
+    print(<span class="string">"Ready to claim @handle!"</span>)
+}</pre>
+  </div>
+  
+  <p>The equivalent in Swift + CoreLocation + CryptoKit would be 200+ lines with manual coordination between frameworks. ULissy collapses the entire GNS protocol into native language constructs.</p>
+  
+  <table class="type-table">
+    <thead>
+      <tr><th>ULissy Type</th><th>Description</th><th>Cryptographic Basis</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="mono">PublicKey</td><td>Ed25519 public key</td><td>32 bytes</td></tr>
+      <tr><td class="mono">Signature</td><td>Ed25519 signature</td><td>64 bytes</td></tr>
+      <tr><td class="mono">H3Cell</td><td>Hexagonal grid cell</td><td>64-bit identifier</td></tr>
+      <tr><td class="mono">Breadcrumb</td><td>Signed location proof</td><td>Chained by SHA-256 hash</td></tr>
+      <tr><td class="mono">Trajectory</td><td>Chain of breadcrumbs</td><td>Append-only Merkle structure</td></tr>
+      <tr><td class="mono">Handle</td><td>@identifier</td><td>Bound to PublicKey via PoT proof</td></tr>
+      <tr><td class="mono">Coordinates</td><td>Raw GPS (internal only)</td><td>Cannot be serialized or transmitted</td></tr>
+    </tbody>
+  </table>
+  
+  <p>The last row is the key innovation: <strong>Coordinates cannot leave the device.</strong> The type system enforces that raw location data never gets serialized, transmitted, or logged. Privacy is a compile-time guarantee, not a runtime hope.</p>
+  
+  <div class="cta-box">
+    <h3>ULissy on GitHub</h3>
+    <p>Lexer, parser, and type checker implemented in Rust. Contributions welcome.</p>
+    <div class="cta-links">
+      <a href="https://github.com/GNS-Foundation/ulissy" target="_blank" class="btn-primary">github.com/GNS-Foundation/ulissy</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════ -->
+<!--            LIVE SYSTEMS                 -->
+<!-- ════════════════════════════════════════ -->
+<section id="live">
   <div class="sec-label">In Production</div>
-  <h2>Don't take our word for it. See it live.</h2>
-  <p class="sec-desc">These systems are running in production today — not mockups, not slides.</p>
+  <h2>Live Systems</h2>
+  <p class="sec-desc">GNS isn't theoretical. These systems are running in production today.</p>
   
-  <div class="demo-grid">
-    <a href="https://orbital-trip-production.up.railway.app/" target="_blank" class="demo-card">
-      <div class="dc-visual orbital">
-        <div class="dc-stat">45K</div>
-      </div>
-      <div class="dc-body">
-        <div class="dc-label">Live Production System</div>
-        <div class="dc-title">Orbital TrIP Satellite Catalog</div>
-        <div class="dc-desc">45,000+ satellite identities with trust scores derived from real orbital trajectory data. CelesTrak pipeline, insured fleet tracking, three-tier attestation.</div>
-        <div class="dc-link">orbital-trip-production.up.railway.app &#8599;</div>
-      </div>
+  <div class="live-grid" style="grid-template-columns: 1fr 1fr;">
+    <a href="https://orbital-trip-production.up.railway.app/" target="_blank" class="live-card">
+      <div class="lc-stat">45K+</div>
+      <div class="lc-title">Satellite Identities</div>
+      <div class="lc-desc">Orbital TrIP catalog with trust scores, insured fleet tracking, and CelesTrak pipeline. Three-tier attestation architecture.</div>
+      <div class="lc-link">orbital-trip-production.up.railway.app &#8599;</div>
     </a>
     
-    <a href="https://flocking-energy-demo-production.up.railway.app/" target="_blank" class="demo-card">
-      <div class="dc-visual flocking">
-        <div class="dc-stat green">LIVE</div>
-      </div>
-      <div class="dc-body">
-        <div class="dc-label">Interactive Simulation</div>
-        <div class="dc-title">Flocking Energy Demonstration</div>
-        <div class="dc-desc">Visual proof of emergent identity patterns through flocking behavior. Watch how unique trajectories form naturally — the foundation of Proof-of-Trajectory.</div>
-        <div class="dc-link">flocking-energy-demo-production.up.railway.app &#8599;</div>
-      </div>
+    <a href="https://flocking-energy-demo-production.up.railway.app/" target="_blank" class="live-card">
+      <div class="lc-stat" style="color:var(--green)">LIVE</div>
+      <div class="lc-title">Flocking Energy Simulation</div>
+      <div class="lc-desc">Visual demonstration of emergent identity patterns through flocking behavior. Proof-of-Trajectory in action.</div>
+      <div class="lc-link">flocking-energy-demo-production.up.railway.app &#8599;</div>
     </a>
-  </div>
-</section>
-
-<!-- ════════════ HOW IT WORKS ════════════ -->
-<section id="how">
-  <div class="sec-label">The Process</div>
-  <h2>How trajectory identity works.</h2>
-  <p class="sec-desc">Four steps from anonymous device to verified identity. No forms, no uploads, no waiting.</p>
-  
-  <div class="steps-grid">
-    <div class="step-card">
-      <div class="st-title">Generate Keys</div>
-      <div class="st-desc">An Ed25519 keypair is created on your device. This single key becomes your identity, your message signing key, your encryption key, and your payment wallet.</div>
-    </div>
-    
-    <div class="step-card">
-      <div class="st-title">Collect Breadcrumbs</div>
-      <div class="st-desc">Your device emits cryptographically-signed location breadcrumbs, quantized to H3 hexagonal cells. Each links to the previous, forming an unforgeable chain.</div>
-    </div>
-    
-    <div class="step-card">
-      <div class="st-title">Build Trust</div>
-      <div class="st-desc">The Trajectory Criticality Engine scores your movement across three axes: entropy, regularity, and span. At 100 breadcrumbs + trust score 20, claim your @handle.</div>
-    </div>
-    
-    <div class="step-card">
-      <div class="st-title">Prove Anything</div>
-      <div class="st-desc">Use your trajectory-verified identity to authenticate, sign messages, send payments, and prove you're human — all with one key, zero passwords.</div>
-    </div>
-  </div>
-</section>
-
-<!-- ════════════ CONTACT ════════════ -->
-<section id="contact">
-  <div class="contact-box">
-    <h2>Let's build together.</h2>
-    <p class="cd-desc">Whether you're an enterprise buyer, integration partner, or investor — we'd love to hear from you.</p>
-    <a href="mailto:cayerbe@ulissy.app" class="cd-email">cayerbe@ulissy.app</a>
   </div>
 </section>
 </div>
 
-<!-- ════════════ FOOTER ════════════ -->
+<!-- ════════════════════════════════════════ -->
+<!--               FOOTER                    -->
+<!-- ════════════════════════════════════════ -->
 <footer>
   <div class="footer-inner">
     <div>
       <div class="footer-brand">
         <img src="logo.png" alt="GNS">
-        <span>Globe Crumbs</span>
+        <span>GNS Protocol</span>
       </div>
-      <div class="footer-tagline">Fraud-proof identity for every device, user, and transaction.<br>Built on the GNS Protocol.</div>
-      <div class="footer-legal">
-        ULISSY s.r.l. &middot; P.IVA 18315191009 &middot; Via Gaetano Sacchi 16, 00153 Roma<br>
-        Patent Pending #63/948,788 &middot; Business Source License<br>
-        &copy; 2026 Globe Crumbs / ULISSY s.r.l. All rights reserved.
-      </div>
-    </div>
-    
-    <div class="footer-col">
-      <h4>Products</h4>
-      <a href="#verticals">Authentication</a>
-      <a href="#verticals">Messaging</a>
-      <a href="#verticals">Bot Protection</a>
-      <a href="#verticals">Payments</a>
-      <a href="#verticals">Enterprise IAM</a>
-      <a href="#verticals">Satellite</a>
-      <a href="#verticals">IoT &amp; M2M</a>
-    </div>
-    
-    <div class="footer-col">
-      <h4>Resources</h4>
-      <a href="#demos">Live Demos</a>
-      <a href="mailto:cayerbe@ulissy.app">Contact</a>
+      <div class="footer-tagline">Your keys. Your identity. Your data.<br>The identity layer the internet never had.</div>
+      <div class="footer-legal">GNS Foundation (CH) &middot; ULISSY s.r.l. (IT) &middot; P.IVA 18315191009<br>&copy; 2026 GNS Foundation. Business Source License.</div>
     </div>
     
     <div class="footer-col">
       <h4>Protocol</h4>
-      <a href="https://www.ulissy.app" target="_blank" class="proto-link">ulissy.app &#8599;</a>
-      <a href="https://github.com/GNS-Foundation" target="_blank" class="proto-link">GitHub &#8599;</a>
-      <a href="https://gnamesystem.netlify.app/en/" target="_blank">White Paper</a>
+      <a href="#protocol">Core Specification</a>
+      <a href="https://gnamesystem.netlify.app/en/" target="_blank">White Paper v0.3</a>
+      <a href="#extensions">TrIP Internet-Draft</a>
+      <a href="#ulissy-lang">ULissy Language</a>
+      <a href="#">COSS Licensing</a>
+    </div>
+    
+    <div class="footer-col">
+      <h4>Resources</h4>
+      <a href="https://github.com/GNS-Foundation" target="_blank">GitHub</a>
+      <a href="https://orbital-trip-production.up.railway.app/" target="_blank">Orbital TrIP Catalog</a>
+      <a href="https://flocking-energy-demo-production.up.railway.app/" target="_blank">Flocking Energy Demo</a>
+      <a href="#">API Documentation</a>
+    </div>
+    
+    <div class="footer-col">
+      <h4>Ecosystem</h4>
+      <a href="https://www.gcrumbs.com" target="_blank" class="bridge-link">Commercial Products &#8599;</a>
+      <a href="https://gns-casestudies.netlify.app/en/" target="_blank">Vertical Case Studies</a>
+      <a href="#">Community</a>
+      <a href="#">Contact</a>
     </div>
   </div>
 </footer>
 
 <script>
 function toggleTheme() {
-  var isLight = document.body.classList.toggle('light');
-  try { localStorage.setItem('gcrumbs-theme', isLight ? 'light' : 'dark'); } catch(e) {}
+  const isLight = document.body.classList.toggle('light');
+  try { localStorage.setItem('ulissy-theme', isLight ? 'light' : 'dark'); } catch(e) {}
 }
-try { if (localStorage.getItem('gcrumbs-theme') === 'light') document.body.classList.add('light'); } catch(e) {}
+try { if (localStorage.getItem('ulissy-theme') === 'light') document.body.classList.add('light'); } catch(e) {}
 document.addEventListener('keydown', function(e) {
   if ((e.key === 't' || e.key === 'T') && e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') toggleTheme();
 });

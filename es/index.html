@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GNS Protocol — The Identity Layer the Internet Never Had</title>
-<meta name="description" content="Geospatial Naming System: decentralized identity through Proof-of-Trajectory. Identity = Public Key. No passwords, no intermediaries.">
-<meta property="og:title" content="GNS Protocol — The Identity Layer the Internet Never Had">
-<meta property="og:description" content="Decentralized identity through Proof-of-Trajectory. Ed25519 cryptographic identity, H3 geospatial quantization, zero intermediaries.">
+<title>GNS Protocol — La Capa de Identidad que Internet Nunca Tuvo</title>
+<meta name="description" content="Geospatial Naming System: identidad descentralizada mediante Proof-of-Trajectory. Identidad = Clave Pública. Sin contraseñas, sin intermediarios.">
+<meta property="og:title" content="GNS Protocol — La Capa de Identidad que Internet Nunca Tuvo">
+<meta property="og:description" content="Identidad descentralizada mediante Proof-of-Trajectory. Identidad criptográfica Ed25519, cuantización geoespacial H3, cero intermediarios.">
 <meta property="og:image" content="https://www.ulissy.app/og-image.png">
 <meta property="og:url" content="https://www.ulissy.app/">
 <meta property="og:type" content="website">
@@ -760,13 +760,13 @@ body.light .lang-toggle a:hover { background: rgba(0,0,0,.04); }
       <span class="proto-tag">Open</span>
     </a>
     <div class="nav-links">
-      <a href="#protocol">Protocol</a>
-      <a href="#extensions">Extensions</a>
+      <a href="#protocol">Protocolo</a>
+      <a href="#extensions">Extensiones</a>
       <a href="#ulissy-lang">ULissy</a>
-      <a href="#live">Live</a>
+      <a href="#live">En Vivo</a>
       <a href="https://github.com/GNS-Foundation" target="_blank">GitHub</a>
-      <a href="https://www.gcrumbs.com" target="_blank" class="products">Products &#8599;</a>
-      <div class="lang-toggle"><a href="/" class="active">EN</a><a href="/it/">IT</a><a href="/es/">ES</a></div>
+      <a href="https://www.gcrumbs.com" target="_blank" class="products">Productos &#8599;</a>
+      <div class="lang-toggle"><a href="/">EN</a><a href="/it/">IT</a><a href="/es/" class="active">ES</a></div>
       <button class="theme-btn" onclick="toggleTheme()">&#9681;</button>
     </div>
     <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
@@ -776,14 +776,14 @@ body.light .lang-toggle a:hover { background: rgba(0,0,0,.04); }
 </nav>
 
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#protocol" onclick="closeMenu()">Protocol</a>
-  <a href="#extensions" onclick="closeMenu()">Extensions</a>
-  <a href="#ulissy-lang" onclick="closeMenu()">ULissy Language</a>
-  <a href="#live" onclick="closeMenu()">Live Systems</a>
+  <a href="#protocol" onclick="closeMenu()">Protocolo</a>
+  <a href="#extensions" onclick="closeMenu()">Extensiones</a>
+  <a href="#ulissy-lang" onclick="closeMenu()">Lenguaje ULissy</a>
+  <a href="#live" onclick="closeMenu()">Sistemas en Vivo</a>
   <a href="https://github.com/GNS-Foundation" target="_blank">GitHub</a>
-  <a href="https://www.gcrumbs.com" target="_blank" class="products">Commercial Products &#8599;</a>
+  <a href="https://www.gcrumbs.com" target="_blank" class="products">Productos Comerciales &#8599;</a>
 
-  <div class="lang-toggle" style="margin:12px 0 0;justify-content:center"><a href="/" class="active">EN</a><a href="/it/">IT</a><a href="/es/">ES</a></div>
+  <div class="lang-toggle" style="margin:12px 0 0;justify-content:center"><a href="/">EN</a><a href="/it/">IT</a><a href="/es/" class="active">ES</a></div>
 </div>
 
 <!-- ════════════════════════════════════════ -->
@@ -791,12 +791,12 @@ body.light .lang-toggle a:hover { background: rgba(0,0,0,.04); }
 <!-- ════════════════════════════════════════ -->
 <div class="hero">
   <div class="hero-equation">Identity &nbsp;=&nbsp; Public Key</div>
-  <h1>The Identity Layer<br>the Internet Never Had</h1>
-  <p class="sub">Decentralized identity through Proof-of-Trajectory. One Ed25519 key for authentication, messaging, and payments. No passwords, no intermediaries, no biometrics.</p>
+  <h1>La Capa de Identidad<br>que Internet Nunca Tuvo</h1>
+  <p class="sub">Identidad descentralizada mediante Proof-of-Trajectory. Una sola clave Ed25519 para autenticación, mensajería y pagos. Sin contraseñas, sin intermediarios, sin biometría.</p>
   <div class="hero-links">
-    <a href="#protocol" class="btn-primary">Read the Specification</a>
+    <a href="#protocol" class="btn-primary">Leer la Especificación</a>
     <a href="https://github.com/GNS-Foundation" target="_blank" class="btn-ghost">GitHub</a>
-    <a href="https://www.gcrumbs.com" target="_blank" class="btn-ghost">Commercial Products &#8599;</a>
+    <a href="https://www.gcrumbs.com" target="_blank" class="btn-ghost">Productos Comerciales &#8599;</a>
   </div>
 </div>
 
@@ -805,31 +805,31 @@ body.light .lang-toggle a:hover { background: rgba(0,0,0,.04); }
 <!-- ════════════════════════════════════════ -->
 <div class="container">
 <section id="protocol">
-  <div class="sec-label">Core Protocol</div>
-  <h2>How GNS Works</h2>
-  <p class="sec-desc">GNS replaces the username/password model with cryptographic identity derived from physical movement in the real world. Three primitives do the work.</p>
+  <div class="sec-label">Protocolo Base</div>
+  <h2>Cómo Funciona GNS</h2>
+  <p class="sec-desc">GNS reemplaza el modelo usuario/contraseña con identidad criptográfica derivada del movimiento físico en el mundo real. Tres primitivas hacen el trabajo.</p>
   
   <div class="spec-grid">
     <div class="spec-card">
       <div class="sc-label">PRIMITIVE 01</div>
-      <div class="sc-title">Ed25519 Identity</div>
-      <p class="sc-text">A single elliptic curve keypair serves as your identity, your message signing key, your encryption key (via X25519), and your Stellar wallet address. No accounts to create. You are your key.</p>
+      <div class="sc-title">Identidad Ed25519</div>
+      <p class="sc-text">Un solo par de claves de curva elíptica sirve como tu identidad, clave de firma, clave de cifrado (vía X25519) y dirección de wallet Stellar. Sin cuentas que crear. Tú eres tu clave.</p>
     </div>
     
     <div class="spec-card">
       <div class="sc-label">PRIMITIVE 02</div>
-      <div class="sc-title">Breadcrumb Chains</div>
-      <p class="sc-text">Your device emits cryptographically-signed, H3-quantized location breadcrumbs chained by hash. Each breadcrumb links to the previous, forming an unforgeable trajectory through the physical world.</p>
+      <div class="sc-title">Cadenas de Breadcrumb</div>
+      <p class="sc-text">Tu dispositivo emite breadcrumbs de ubicación firmados criptográficamente, cuantizados en H3 y encadenados por hash. Cada breadcrumb se vincula al anterior, formando una trayectoria infalsificable a través del mundo físico.</p>
     </div>
     
     <div class="spec-card">
       <div class="sc-label">PRIMITIVE 03</div>
-      <div class="sc-title">Trust Scoring</div>
-      <p class="sc-text">The Trajectory Criticality Engine computes trust from three axes: entropy (diversity of locations), regularity (consistent patterns), and span (duration over time). Bots can't fake months of real-world movement.</p>
+      <div class="sc-title">Puntuación de Confianza</div>
+      <p class="sc-text">El Trajectory Criticality Engine calcula la confianza en tres ejes: entropía (diversidad de ubicaciones), regularidad (patrones consistentes) y amplitud (duración en el tiempo). Los bots no pueden falsificar meses de movimiento real.</p>
     </div>
   </div>
   
-  <div class="code-label">Breadcrumb structure</div>
+  <div class="code-label">Estructura del Breadcrumb</div>
   <div class="code-block">
 <pre><span class="keyword">type</span> <span class="type">Breadcrumb</span> {
     index:      <span class="type">Uint64</span>
@@ -847,26 +847,26 @@ body.light .lang-toggle a:hover { background: rgba(0,0,0,.04); }
   <div class="spec-grid">
     <div class="spec-card">
       <div class="sc-label">RESOLUTION</div>
-      <div class="sc-title">@handle System</div>
-      <p class="sc-text">Human-readable handles (@camilo, @wincom) resolve to Ed25519 public keys. Claiming a handle requires 100+ breadcrumbs and a trust score of 20+ — Proof-of-Trajectory prevents handle squatting.</p>
+      <div class="sc-title">Sistema @handle</div>
+      <p class="sc-text">Los handles legibles (@camilo, @wincom) se resuelven en claves públicas Ed25519. Reclamar un handle requiere 100+ breadcrumbs y una puntuación de confianza de 20+ — el Proof-of-Trajectory previene el squatting de handles.</p>
     </div>
     
     <div class="spec-card">
       <div class="sc-label">PAYMENT</div>
-      <div class="sc-title">IDUP Layer</div>
-      <p class="sc-text">Because Ed25519 identity keys are simultaneously Stellar wallet addresses, payments are native to the protocol. Send money to @handle. No payment processor, no intermediary fees.</p>
+      <div class="sc-title">Capa IDUP</div>
+      <p class="sc-text">Dado que las claves de identidad Ed25519 son simultáneamente direcciones de wallet Stellar, los pagos son nativos del protocolo. Envía dinero a @handle. Sin procesador de pagos, sin comisiones intermediarias.</p>
     </div>
     
     <div class="spec-card">
       <div class="sc-label">PRIVACY</div>
-      <div class="sc-title">H3 Quantization</div>
-      <p class="sc-text">Uber's H3 hexagonal grid converts exact GPS coordinates into ~174m cells. Verifiers learn "this person was in this area" without ever seeing the raw location. Privacy by math, not by policy.</p>
+      <div class="sc-title">Cuantización H3</div>
+      <p class="sc-text">La cuadrícula hexagonal H3 de Uber convierte coordenadas GPS exactas en celdas de ~174m. Los verificadores aprenden "esta persona estuvo en esta área" sin ver nunca la ubicación exacta. Privacidad por matemáticas, no por política.</p>
     </div>
   </div>
   
   <div class="cta-box">
-    <h3>Read the Full Specification</h3>
-    <p>The GNS White Paper v0.3 covers the complete protocol: identity, breadcrumbs, trust scoring, handles, messaging, payments, and organization namespaces.</p>
+    <h3>Leer la Especificación Completa</h3>
+    <p>El White Paper GNS v0.3 cubre el protocolo completo: identidad, breadcrumbs, puntuación de confianza, handles, mensajería, pagos y namespaces organizacionales.</p>
     <div class="cta-links">
       <a href="https://github.com/GNS-Foundation/docs/tree/main/docs/whitepaper" target="_blank" class="btn-primary">White Paper (GitHub)</a>
     </div>
@@ -877,41 +877,41 @@ body.light .lang-toggle a:hover { background: rgba(0,0,0,.04); }
 <!--            EXTENSIONS                   -->
 <!-- ════════════════════════════════════════ -->
 <section id="extensions">
-  <div class="sec-label">Protocol Extensions</div>
+  <div class="sec-label">Extensiones del Protocolo</div>
   <h2>TrIP — Trajectory Identity Protocol</h2>
-  <p class="sec-desc">TrIP formalizes Proof-of-Trajectory as an IETF Internet-Draft, extending GNS from human identity to devices, satellites, and IoT ecosystems.</p>
+  <p class="sec-desc">TrIP formaliza el Proof-of-Trajectory como Internet-Draft IETF, extendiendo GNS desde la identidad humana a dispositivos, satélites y ecosistemas IoT.</p>
   
   <div class="ext-grid">
     <div class="ext-card">
-      <div class="ec-status draft">IETF Draft</div>
+      <div class="ec-status draft">Borrador IETF</div>
       <div class="ec-title">TrIP Core</div>
       <div class="ec-ref">draft-ayerbe-rats-trip-02</div>
-      <p class="ec-desc">Trajectory-based Identity Protocol submitted to the IETF RATS (Remote ATtestation procedureS) working group. Defines attestation records, trust computation, and the three-tier architecture for verifying identity through physical behavior.</p>
-      <a href="https://github.com/GNS-Foundation/docs/tree/main/docs/whitepaper" target="_blank">Read specification &#8594;</a>
+      <p class="ec-desc">Protocolo de Identidad basado en Trayectoria presentado al grupo de trabajo IETF RATS (Remote ATtestation procedureS). Define registros de atestación, cálculo de confianza y la arquitectura de tres niveles para verificar identidad a través del comportamiento físico.</p>
+      <a href="https://github.com/GNS-Foundation/docs/tree/main/docs/whitepaper" target="_blank">Leer especificación &#8594;</a>
     </div>
     
     <div class="ext-card">
-      <div class="ec-status live">Live</div>
-      <div class="ec-title">Orbital TrIP</div>
-      <div class="ec-ref">15,000+ satellites trackable</div>
-      <p class="ec-desc">TrIP extended to Low Earth Orbit. 15,000+ satellite identities with trust scores derived from orbital trajectory data. CelesTrak pipeline, insured fleet tracking, three-tier attestation for space objects.</p>
-      <a href="https://orbital-trip-production.up.railway.app/" target="_blank">Live satellite catalog &#8594;</a>
+      <div class="ec-status live">Activo</div>
+      <div class="ec-title">TrIP Orbital</div>
+      <div class="ec-ref">15.000+ satélites rastreables</div>
+      <p class="ec-desc">TrIP extendido a órbita terrestre baja. 15.000+ identidades satelitales con puntuaciones de confianza derivadas de datos de trayectoria orbital. Pipeline CelesTrak, rastreo de flota asegurado, atestación de tres niveles para objetos espaciales.</p>
+      <a href="https://orbital-trip-production.up.railway.app/" target="_blank">Catálogo satelital en vivo &#8594;</a>
     </div>
     
     <div class="ext-card">
-      <div class="ec-status draft">Extension</div>
+      <div class="ec-status draft">Extensión</div>
       <div class="ec-title">TrIP-SIoT</div>
-      <div class="ec-ref">Social Internet of Things</div>
-      <p class="ec-desc">Cryptographic social relationships for IoT devices. Proves co-location (CLOR), ownership (OOR), parental (POR), co-work (CWOR), and social (SOR) relationships through breadcrumb chain intersection. Transforms 14 years of SIoT academic theory into deployable protocol.</p>
-      <a href="#">Read extension paper &#8594;</a>
+      <div class="ec-ref">Internet Social de las Cosas</div>
+      <p class="ec-desc">Relaciones sociales criptográficas para dispositivos IoT. Demuestra relaciones de co-ubicación (CLOR), propiedad (OOR), parentales (POR), co-trabajo (CWOR) y sociales (SOR) mediante intersección de cadenas de breadcrumb. Transforma 14 años de teoría académica SIoT en protocolo implementable.</p>
+      <a href="#">Leer paper de extensión &#8594;</a>
     </div>
     
     <div class="ext-card">
       <div class="ec-status draft">Provisional</div>
-      <div class="ec-title">Patent #63/948,788</div>
-      <div class="ec-ref">Proof-of-Trajectory Innovation</div>
-      <p class="ec-desc">Provisional patent filed for the Proof-of-Trajectory mechanism — proving identity through cryptographically-signed physical movement rather than biometrics, passwords, or centralized databases.</p>
-      <a href="#">COSS licensing details &#8594;</a>
+      <div class="ec-title">Patente #63/948,788</div>
+      <div class="ec-ref">Innovación Proof-of-Trajectory</div>
+      <p class="ec-desc">Patente provisional presentada para el mecanismo Proof-of-Trajectory — demostrar identidad a través de movimiento físico firmado criptográficamente en lugar de biometría, contraseñas o bases de datos centralizadas.</p>
+      <a href="#">Detalles de licencia COSS &#8594;</a>
     </div>
   </div>
 </section>
@@ -920,14 +920,14 @@ body.light .lang-toggle a:hover { background: rgba(0,0,0,.04); }
 <!--           ULISSY LANGUAGE               -->
 <!-- ════════════════════════════════════════ -->
 <section id="ulissy-lang">
-  <div class="sec-label">Domain-Specific Language</div>
+  <div class="sec-label">Lenguaje de Dominio Específico</div>
   <div class="lang-header">
     <h2>ULissy Language</h2>
     <span class="lang-badge">.ul</span>
   </div>
-  <p class="sec-desc">A programming language purpose-built for spatial-identity computing. Location is a primitive type, not a library call. Encryption happens automatically. Privacy violations fail at compile time.</p>
+  <p class="sec-desc">Un lenguaje de programación diseñado para computación de identidad espacial. La ubicación es un tipo primitivo, no una llamada a librería. El cifrado ocurre automáticamente. Las violaciones de privacidad fallan en tiempo de compilación.</p>
   
-  <div class="code-label">A first ULissy program</div>
+  <div class="code-label">Un primer programa ULissy</div>
   <div class="code-block">
 <pre><span class="comment">// Collect breadcrumbs to prove humanity</span>
 <span class="keyword">identity</span> me = Keychain.primary
@@ -947,28 +947,28 @@ body.light .lang-toggle a:hover { background: rgba(0,0,0,.04); }
 }</pre>
   </div>
   
-  <p>The equivalent in Swift + CoreLocation + CryptoKit would be 200+ lines with manual coordination between frameworks. ULissy collapses the entire GNS protocol into native language constructs.</p>
+  <p>El equivalente en Swift + CoreLocation + CryptoKit serían 200+ líneas con coordinación manual entre frameworks. ULissy condensa todo el protocolo GNS en constructos nativos del lenguaje.</p>
   
   <table class="type-table">
     <thead>
-      <tr><th>ULissy Type</th><th>Description</th><th>Cryptographic Basis</th></tr>
+      <tr><th>Tipo ULissy</th><th>Descripción</th><th>Base Criptográfica</th></tr>
     </thead>
     <tbody>
-      <tr><td class="mono">PublicKey</td><td>Ed25519 public key</td><td>32 bytes</td></tr>
-      <tr><td class="mono">Signature</td><td>Ed25519 signature</td><td>64 bytes</td></tr>
-      <tr><td class="mono">H3Cell</td><td>Hexagonal grid cell</td><td>64-bit identifier</td></tr>
-      <tr><td class="mono">Breadcrumb</td><td>Signed location proof</td><td>Chained by SHA-256 hash</td></tr>
-      <tr><td class="mono">Trajectory</td><td>Chain of breadcrumbs</td><td>Append-only Merkle structure</td></tr>
-      <tr><td class="mono">Handle</td><td>@identifier</td><td>Bound to PublicKey via PoT proof</td></tr>
-      <tr><td class="mono">Coordinates</td><td>Raw GPS (internal only)</td><td>Cannot be serialized or transmitted</td></tr>
+      <tr><td class="mono">PublicKey</td><td>Clave pública Ed25519</td><td>32 bytes</td></tr>
+      <tr><td class="mono">Signature</td><td>Firma Ed25519</td><td>64 bytes</td></tr>
+      <tr><td class="mono">H3Cell</td><td>Celda de cuadrícula hexagonal</td><td>Identificador 64-bit</td></tr>
+      <tr><td class="mono">Breadcrumb</td><td>Prueba de ubicación firmada</td><td>Encadenada por hash SHA-256</td></tr>
+      <tr><td class="mono">Trajectory</td><td>Cadena de breadcrumbs</td><td>Estructura Merkle append-only</td></tr>
+      <tr><td class="mono">Handle</td><td>@identificador</td><td>Vinculado a PublicKey vía prueba PoT</td></tr>
+      <tr><td class="mono">Coordinates</td><td>GPS crudo (solo interno)</td><td>No puede ser serializado o transmitido</td></tr>
     </tbody>
   </table>
   
-  <p>The last row is the key innovation: <strong>Coordinates cannot leave the device.</strong> The type system enforces that raw location data never gets serialized, transmitted, or logged. Privacy is a compile-time guarantee, not a runtime hope.</p>
+  <p>La última fila es la innovación clave: <strong>Las Coordenadas no pueden salir del dispositivo.</strong> El sistema de tipos impone que los datos de ubicación crudos nunca se serialicen, transmitan o registren. La privacidad es una garantía en tiempo de compilación, no una esperanza en runtime.</p>
   
   <div class="cta-box">
-    <h3>ULissy on GitHub</h3>
-    <p>Lexer, parser, and type checker implemented in Rust. Contributions welcome.</p>
+    <h3>ULissy en GitHub</h3>
+    <p>Lexer, parser y verificador de tipos implementados en Rust. Contribuciones bienvenidas.</p>
     <div class="cta-links">
       <a href="https://github.com/GNS-Foundation/ulissy" target="_blank" class="btn-primary">github.com/GNS-Foundation/ulissy</a>
     </div>
@@ -979,22 +979,22 @@ body.light .lang-toggle a:hover { background: rgba(0,0,0,.04); }
 <!--            LIVE SYSTEMS                 -->
 <!-- ════════════════════════════════════════ -->
 <section id="live">
-  <div class="sec-label">In Production</div>
-  <h2>Live Systems</h2>
-  <p class="sec-desc">GNS isn't theoretical. These systems are running in production today.</p>
+  <div class="sec-label">En Producción</div>
+  <h2>Sistemas en Vivo</h2>
+  <p class="sec-desc">GNS no es teórico. Estos sistemas están en producción hoy.</p>
   
   <div class="live-grid" style="grid-template-columns: 1fr 1fr;">
     <a href="https://orbital-trip-production.up.railway.app/" target="_blank" class="live-card">
       <div class="lc-stat">15K+</div>
-      <div class="lc-title">Satellite Identities</div>
-      <div class="lc-desc">Orbital TrIP catalog with trust scores, insured fleet tracking, and CelesTrak pipeline. Three-tier attestation architecture.</div>
+      <div class="lc-title">Identidades Satelitales</div>
+      <div class="lc-desc">Catálogo TrIP Orbital con puntuaciones de confianza, rastreo de flota asegurado y pipeline CelesTrak. Arquitectura de atestación de tres niveles.</div>
       <div class="lc-link">orbital-trip-production.up.railway.app &#8599;</div>
     </a>
     
     <a href="https://flocking-energy-demo-production.up.railway.app/" target="_blank" class="live-card">
       <div class="lc-stat" style="color:var(--green)">LIVE</div>
-      <div class="lc-title">Flocking Energy Simulation</div>
-      <div class="lc-desc">Visual demonstration of emergent identity patterns through flocking behavior. Proof-of-Trajectory in action.</div>
+      <div class="lc-title">Simulación de Energía de Flocking</div>
+      <div class="lc-desc">Demostración visual de patrones de identidad emergentes a través del comportamiento de flocking. Proof-of-Trajectory en acción.</div>
       <div class="lc-link">flocking-energy-demo-production.up.railway.app &#8599;</div>
     </a>
   </div>
@@ -1011,33 +1011,33 @@ body.light .lang-toggle a:hover { background: rgba(0,0,0,.04); }
         <img src="logo.png" alt="GNS">
         <span>GNS Protocol</span>
       </div>
-      <div class="footer-tagline">Your keys. Your identity. Your data.<br>The identity layer the internet never had.</div>
+      <div class="footer-tagline">Tus claves. Tu identidad. Tus datos.<br>La capa de identidad que internet nunca tuvo.</div>
       <div class="footer-legal">GNS Foundation (CH) &middot; ULISSY s.r.l. (IT) &middot; P.IVA 18315191009<br>&copy; 2026 GNS Foundation. Business Source License.</div>
     </div>
     
     <div class="footer-col">
-      <h4>Protocol</h4>
-      <a href="#protocol">Core Specification</a>
+      <h4>Protocolo</h4>
+      <a href="#protocol">Especificación Base</a>
       <a href="https://github.com/GNS-Foundation/docs/tree/main/docs/whitepaper" target="_blank">White Paper</a>
       <a href="#extensions">TrIP Internet-Draft</a>
-      <a href="#ulissy-lang">ULissy Language</a>
-      <a href="#">COSS Licensing</a>
+      <a href="#ulissy-lang">Lenguaje ULissy</a>
+      <a href="#">Licencia COSS</a>
     </div>
     
     <div class="footer-col">
-      <h4>Resources</h4>
+      <h4>Recursos</h4>
       <a href="https://github.com/GNS-Foundation" target="_blank">GitHub</a>
       <a href="https://orbital-trip-production.up.railway.app/" target="_blank">Orbital TrIP Catalog</a>
       <a href="https://flocking-energy-demo-production.up.railway.app/" target="_blank">Flocking Energy Demo</a>
-      <a href="#">API Documentation</a>
+      <a href="#">Documentación API</a>
     </div>
     
     <div class="footer-col">
-      <h4>Ecosystem</h4>
-      <a href="https://www.gcrumbs.com" target="_blank" class="bridge-link">Commercial Products &#8599;</a>
-      <a href="https://gns-casestudies.netlify.app/en/" target="_blank">Vertical Case Studies</a>
-      <a href="#">Community</a>
-      <a href="#">Contact</a>
+      <h4>Ecosistema</h4>
+      <a href="https://www.gcrumbs.com" target="_blank" class="bridge-link">Productos Comerciales &#8599;</a>
+      <a href="https://gns-casestudies.netlify.app/en/" target="_blank">Casos de Estudio Verticales</a>
+      <a href="#">Comunidad</a>
+      <a href="#">Contacto</a>
     </div>
   </div>
 </footer>

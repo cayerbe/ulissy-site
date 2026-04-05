@@ -362,11 +362,12 @@ footer a:hover { text-decoration: underline; }
         <div class="sec-label">ULISSY s.r.l. -- Roma, Italia</div>
         <h1>We build the<br><span class="accent">identity</span> infrastructure<br>for the <span class="accent2">AI</span> era.</h1>
         <p class="sub">
-          A cryptographic identity grounded in geography. A compute network owned by its users. Two products, one protocol, zero intermediaries.
+          A cryptographic identity grounded in geography. A compute network owned by its users. Three products, one protocol, zero intermediaries.
         </p>
         <div class="hero-btns">
           <a href="https://geiant.com" class="btn-primary">GEIANT -- Enterprise</a>
           <a href="https://gcrumbs.com" class="btn-ghost">GCRUMBS -- Consumer</a>
+          <a href="https://mobydb.com" class="btn-ghost" style="border-color:rgba(0,180,160,.4);color:#00b4a0;">🐋 MobyDB -- Database</a>
         </div>
         <div class="hero-meta">
           <div class="hero-meta-item"><span>Protocol</span><br>GNS (Geospatial Naming System)</div>
@@ -411,10 +412,10 @@ footer a:hover { text-decoration: underline; }
 <section id="products">
   <div class="container">
     <div class="sec-label">What We Build</div>
-    <h2>Two products. One protocol.<br><span class="accent2">One network.</span></h2>
-    <p class="sub">GCRUMBS drives adoption. GEIANT drives revenue. Both run on the same GNS Protocol + Hive compute network.</p>
+    <h2>Three products. One protocol.<br><span class="accent2">One network.</span></h2>
+    <p class="sub">GEIANT drives enterprise revenue. GCRUMBS drives consumer adoption. MobyDB is the storage engine underneath. All run on the same GNS Protocol.</p>
 
-    <div class="card-grid cols-2" style="margin-top:40px;">
+    <div class="card-grid cols-3" style="margin-top:40px;">
       <div class="product-card" style="border-top: 3px solid var(--green);">
         <div class="product-type" style="color:var(--green);">B2B -- Enterprise Platform</div>
         <div class="product-name">GEIANT</div>
@@ -440,6 +441,19 @@ footer a:hover { text-decoration: underline; }
           <span class="pill">Stellar Wallet</span>
         </div>
         <div style="margin-top:16px;"><a href="https://gcrumbs.com" class="product-url">gcrumbs.com --></a></div>
+      </div>
+      <div class="product-card" style="border-top: 3px solid #00b4a0;">
+        <div class="product-type" style="color:#00b4a0;">Infrastructure -- Geospatial Database</div>
+        <div class="product-name">MobyDB</div>
+        <div class="product-desc">
+          The first database where geography is the primary key. H3 cell + epoch + Ed25519 pubkey = 48-byte composite key. Signed writes, Merkle proofs, MobyQL spatial queries. 5.8x faster proximity than PostGIS.
+        </div>
+        <div>
+          <span class="pill" style="color:#00b4a0;border-color:rgba(0,180,160,.3);">Rust + RocksDB</span>
+          <span class="pill" style="color:#00b4a0;border-color:rgba(0,180,160,.3);">MobyQL</span>
+          <span class="pill" style="color:#00b4a0;border-color:rgba(0,180,160,.3);">Apache 2.0</span>
+        </div>
+        <div style="margin-top:16px;"><a href="https://mobydb.com" class="product-url" style="color:#00b4a0;">mobydb.com --></a></div>
       </div>
     </div>
   </div>
@@ -472,6 +486,13 @@ footer a:hover { text-decoration: underline; }
         <div>
           <div class="stack-name">GEP -- GeoEpoch Protocol</div>
           <div class="stack-desc">Geographic addressing fabric. 569 trillion unique points from Uber H3. Open infrastructure.</div>
+        </div>
+      </div>
+      <div class="stack-layer" style="border-color:rgba(0,180,160,.3);background:rgba(0,180,160,.04);">
+        <div class="stack-num" style="color:#00b4a0;">DB</div>
+        <div>
+          <div class="stack-name">🐋 MobyDB -- Geospatial-Native Storage</div>
+          <div class="stack-desc">48-byte composite key (H3 + epoch + Ed25519). Signed writes, Merkle epochs, MobyQL queries. <a href="https://mobydb.com" style="color:#00b4a0;">mobydb.com</a></div>
         </div>
       </div>
       <div class="stack-layer">
